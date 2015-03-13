@@ -30,7 +30,7 @@ import net.minecraft.util.ResourceLocation;
 public class BlockBrick extends Block 
 {
 	//public static final PropertyEnum VARIANT = PropertyEnum.create("variant", BlockBrick.EnumType.class);
-    private static final String __OBFID = "CL_00003555";
+    //private static final String __OBFID = "CL_00003555";
     
 	//public static int brickBlockid = 3000;
 	public static Material material = Material.rock;

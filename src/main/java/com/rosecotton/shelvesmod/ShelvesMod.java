@@ -8,6 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -83,7 +84,13 @@ public class ShelvesMod
 
 	  		renderItem.getItemModelMesher().register(Item.getItemFromBlock(shelfBlock), 0, new ModelResourceLocation(ShelvesMod.MODID + ":" + ((BlockShelf) shelfBlock).getName(), "shelfBlock"));
 	  		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(shelfBlock),0, new ModelResourceLocation(ShelvesMod.MODID+":"+ "shelfBlock", "inventory"));
+	  		
+	  	    //final int DEFAULT_ITEM_SUBTYPE = 0;
+	  	    //Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(itemBlockSimple, DEFAULT_ITEM_SUBTYPE, itemModelResourceLocation);
+
+	  	    ClientRegistry.bindTileEntitySpecialRenderer(ShelfTitleEntity.class, new TileShelfRender());
 	  	}
+	    GameRegistry.registerTileEntity(ShelfTitleEntity.class, "Shelf_tesr_te");
 	  	
 	  	//recipes
 	  	GameRegistry.addRecipe(new ItemStack(shelfBlock), new Object[]{

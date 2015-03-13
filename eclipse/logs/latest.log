@@ -1,42 +1,30 @@
-[18:11:48] [Client thread/INFO]: Setting user: Player878
-[18:11:48] [Client thread/INFO]: (Session ID is token:FML:Player878)
-[18:11:52] [Client thread/INFO]: LWJGL Version: 2.9.1
-[18:11:57] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Test Mod 01, FMLFileResourcePack:Ore Detect Mod, FMLFileResourcePack:Shelves Mod
-[18:11:57] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[18:11:57] [Thread-7/INFO]: Initializing LWJGL OpenAL
-[18:11:57] [Thread-7/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[18:11:58] [Thread-7/INFO]: OpenAL initialized.
-[18:11:58] [Sound Library Loader/INFO]: Sound engine started
-[18:12:00] [Client thread/INFO]: Created: 512x512 textures-atlas
-[18:12:02] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Test Mod 01, FMLFileResourcePack:Ore Detect Mod, FMLFileResourcePack:Shelves Mod
-[18:12:02] [Client thread/INFO]: SoundSystem shutting down...
-[18:12:02] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
-[18:12:02] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[18:12:02] [Thread-9/INFO]: Initializing LWJGL OpenAL
-[18:12:02] [Thread-9/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[18:12:08] [Thread-9/INFO]: OpenAL initialized.
-[18:12:08] [Sound Library Loader/INFO]: Sound engine started
-[18:12:10] [Client thread/INFO]: Created: 512x512 textures-atlas
-[18:12:21] [Server thread/INFO]: Starting integrated minecraft server version 1.8
-[18:12:21] [Server thread/INFO]: Generating keypair
-[18:12:22] [Server thread/INFO]: Preparing start region for level 0
-[18:12:23] [Server thread/INFO]: Preparing spawn area: 38%
-[18:12:24] [Server thread/INFO]: Preparing spawn area: 93%
-[18:12:24] [Server thread/INFO]: Changing view distance to 8, from 10
-[18:12:25] [Server thread/INFO]: Player878[local:E:b9540ac9] logged in with entity id 299 at (-231.85697573168673, 77.0, 61.09418574985075)
-[18:12:25] [Server thread/INFO]: Player878 joined the game
-[18:12:49] [Server thread/INFO]: Player878 has just earned the achievement [Taking Inventory]
-[18:12:49] [Client thread/INFO]: [CHAT] Player878 has just earned the achievement [Taking Inventory]
-[18:13:45] [Server thread/INFO]: Saving and pausing game...
-[18:13:45] [Server thread/INFO]: Saving chunks for level 'TestingShelvesGui'/Overworld
-[18:13:45] [Server thread/INFO]: Saving chunks for level 'TestingShelvesGui'/Nether
-[18:13:45] [Server thread/INFO]: Saving chunks for level 'TestingShelvesGui'/The End
-[18:13:46] [Server thread/INFO]: Stopping server
-[18:13:46] [Server thread/INFO]: Saving players
-[18:13:46] [Server thread/INFO]: Saving worlds
-[18:13:46] [Server thread/INFO]: Saving chunks for level 'TestingShelvesGui'/Overworld
-[18:13:46] [Server thread/INFO]: Saving chunks for level 'TestingShelvesGui'/Nether
-[18:13:46] [Server thread/INFO]: Saving chunks for level 'TestingShelvesGui'/The End
-[18:13:47] [Client thread/INFO]: Stopping!
-[18:13:47] [Client thread/INFO]: SoundSystem shutting down...
-[18:13:47] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[08:53:43] [Client thread/INFO]: Setting user: Player630
+[08:53:43] [Client thread/INFO]: (Session ID is token:FML:Player630)
+[08:53:45] [Client thread/INFO]: LWJGL Version: 2.9.1
+[08:53:50] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Test Mod 01, FMLFileResourcePack:Ore Detect Mod, FMLFileResourcePack:Shelves Mod
+[08:53:50] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[08:53:50] [Thread-7/INFO]: Initializing LWJGL OpenAL
+[08:53:50] [Thread-7/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[08:53:51] [Thread-7/INFO]: OpenAL initialized.
+[08:53:51] [Sound Library Loader/INFO]: Sound engine started
+[08:53:53] [Client thread/INFO]: Created: 512x512 textures-atlas
+[08:53:54] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Test Mod 01, FMLFileResourcePack:Ore Detect Mod, FMLFileResourcePack:Shelves Mod
+[08:53:54] [Client thread/INFO]: SoundSystem shutting down...
+[08:53:55] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[08:53:55] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[08:53:55] [Thread-9/INFO]: Initializing LWJGL OpenAL
+[08:53:55] [Thread-9/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[08:54:01] [Thread-9/INFO]: OpenAL initialized.
+[08:54:01] [Sound Library Loader/INFO]: Sound engine started
+[08:54:03] [Client thread/INFO]: Created: 512x512 textures-atlas
+[08:54:17] [Server thread/INFO]: Starting integrated minecraft server version 1.8
+[08:54:17] [Server thread/INFO]: Generating keypair
+[08:54:17] [Server thread/INFO]: Preparing start region for level 0
+[08:54:18] [Server thread/INFO]: Preparing spawn area: 56%
+[08:54:19] [Server thread/INFO]: Changing view distance to 8, from 10
+[08:54:19] [Server thread/INFO]: Player630[local:E:764164a6] logged in with entity id 27 at (228.23750001192093, 65.0, -206.2593376194127)
+[08:54:19] [Server thread/INFO]: Player630 joined the game
+[08:56:33] [Server thread/INFO]: Saving and pausing game...
+[08:56:33] [Server thread/INFO]: Saving chunks for level 'Survival'/Overworld
+[08:56:33] [Server thread/INFO]: Saving chunks for level 'Survival'/Nether
+[08:56:33] [Server thread/INFO]: Saving chunks for level 'Survival'/The End

@@ -2,6 +2,7 @@ package com.rosecotton.shelvesmod;
 import java.util.Arrays;
 
 import net.minecraft.block.BlockChest;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -21,12 +22,12 @@ public class ShelfTitleEntity extends TileEntity implements IInventory {
 	final int NUMBER_OF_SLOTS = 4;
     public int numPlayersUsing;
 	private ItemStack[] itemStacks = new ItemStack[NUMBER_OF_SLOTS];
-
+	//RenderShelfItems renderShelfItems = new RenderShelfItems(Minecraft.getMinecraft().getRenderManager(), Minecraft.getMinecraft().getRenderItem());
 
 	// will add a key for this container to the lang file so we can name it in the GUI
 	@Override
 	public String getName() {
-		return "Block Shelf";
+		return "Block Shelf"; 
 	}
 
 @Override
