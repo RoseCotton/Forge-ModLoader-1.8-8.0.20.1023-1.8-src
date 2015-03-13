@@ -13,9 +13,11 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 
 import com.google.common.primitives.SignedBytes;
+import com.sun.org.apache.xpath.internal.operations.String;
 
 public class TileShelfRender extends TileEntitySpecialRenderer {
     private RenderEntityItem itemRender;
+    public int jLast = 0; 
     TileShelfRender() 
     {
         itemRender = new RenderEntityItem(Minecraft.getMinecraft().getRenderManager(),Minecraft.getMinecraft().getRenderItem()) ;
@@ -29,6 +31,7 @@ public class TileShelfRender extends TileEntitySpecialRenderer {
             @Override
             public boolean shouldSpreadItems() {return false;}
         };*/
+
     }
     public void render(ShelfTitleEntity te, double x, double y, double z, float par6, int par7) {
     	//BlockPos blockPos;
@@ -41,24 +44,33 @@ public class TileShelfRender extends TileEntitySpecialRenderer {
                 customItem.hoverStart = 0.0F;
                 customItem.setEntityItemStack(te.getStackInSlot(i));
                 GlStateManager.pushMatrix();
-                int j = ((EnumFacing)myBlockState.getValue(BlockBed.FACING)).getHorizontalIndex();
-                GlStateManager.rotate((float)(j * 90), 0.0F, 1.0F, 0.0F);  //I'M GUESSING j IS GOING TO BE 0, 1, 2, OR 3	
+                int j = ((EnumFacing)myBlockState.getValue(BlockShelf.FACING)).getHorizontalIndex();
+
+    	    	/*if (j != this.jLast)
+    	    	{
+    	    		System.out.println(j);
+    	    	}
+    	    	this.jLast = j;*/
+    	    	
                 double xAdd;
 		        double yAdd;
 		        double zAdd;
-                if ( j == 0)
+                /*if ( j < 1)
+                {
+                    xAdd = x + (double)(13 - (i/2)*8)/16;
+    		        yAdd = y + (double)(2 + (i/2)*6)/16-1.0d;
+    		        zAdd = z + (double)(4 +(i%2)*8)/16;
+    	    		System.out.println(xAdd);
+    	    		System.out.println(yAdd);
+    	    		System.out.println(zAdd);
+                }
+                else if (j < 2)
                 {
                     xAdd = x + (double)(13 - (i/2)*8)/16;
     		        yAdd = y + (double)(2 + (i/2)*6)/16-1.0d;
     		        zAdd = z + (double)(4 +(i%2)*8)/16;
                 }
-                else if (j == 1)
-                {
-                    xAdd = x + (double)(13 - (i/2)*8)/16;
-    		        yAdd = y + (double)(2 + (i/2)*6)/16-1.0d;
-    		        zAdd = z + (double)(4 +(i%2)*8)/16;
-                }
-                else if (j == 2)
+                else if (j < 3)
                 {
                     xAdd = x + (double)(13 - (i/2)*8)/16;
     		        yAdd = y + (double)(2 + (i/2)*6)/16-1.0d;
@@ -69,7 +81,35 @@ public class TileShelfRender extends TileEntitySpecialRenderer {
                     xAdd = x + (double)(13 - (i/2)*8)/16;
     		        yAdd = y + (double)(2 + (i/2)*6)/16-1.0d;
     		        zAdd = z + (double)(4 +(i%2)*8)/16;
+                }*/
+                if ( j < 1)
+                {
+                    xAdd = (double)(13 - (i/2)*8)/16;
+    		        yAdd = (double)(2 + (i/2)*6)/16-1.0d;
+    		        zAdd = (double)(4 +(i%2)*8)/16;
+    	    		//System.out.println(xAdd);
+    	    		//System.out.println(yAdd);
+    	    		//System.out.println(zAdd);
                 }
+                else if (j < 2)
+                {
+                    xAdd = (double)(13 - (i/2)*8)/16;
+    		        yAdd = (double)(2 + (i/2)*6)/16-1.0d;
+    		        zAdd = (double)(4 +(i%2)*8)/16;
+                }
+                else if (j < 3)
+                {
+                    xAdd = (double)(13 - (i/2)*8)/16;
+    		        yAdd = (double)(2 + (i/2)*6)/16-1.0d;
+    		        zAdd = (double)(4 +(i%2)*8)/16;
+                }
+                else
+                {
+                    xAdd = (double)(13 - (i/2)*8)/16;
+    		        yAdd = (double)(2 + (i/2)*6)/16-1.0d;
+    		        zAdd = (double)(4 +(i%2)*8)/16;
+                }
+                GlStateManager.rotate((float)(j * 90), 0.0F, 1.0F, 0.0F);  //I'M GUESSING j IS GOING TO BE 0, 1, 2, OR 3	
                 //double xAdd = x + (double)(13 - (i/2)*8)/16;
 		        //double yAdd = y + (double)(2 + (i/2)*6)/16-1.0d;
 		        //double zAdd = z + (double)(4 +(i%2)*8)/16;
