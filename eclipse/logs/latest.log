@@ -1,41 +1,52 @@
-[10:20:01] [Client thread/INFO]: Setting user: Player895
-[10:20:01] [Client thread/INFO]: (Session ID is token:FML:Player895)
-[10:20:05] [Client thread/INFO]: LWJGL Version: 2.9.1
-[10:20:09] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Test Mod 01, FMLFileResourcePack:Ore Detect Mod, FMLFileResourcePack:Shelves Mod
-[10:20:09] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[10:20:10] [Thread-7/INFO]: Initializing LWJGL OpenAL
-[10:20:10] [Thread-7/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[10:20:10] [Thread-7/INFO]: OpenAL initialized.
-[10:20:10] [Sound Library Loader/INFO]: Sound engine started
-[10:20:13] [Client thread/INFO]: Created: 512x512 textures-atlas
-[10:20:14] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Test Mod 01, FMLFileResourcePack:Ore Detect Mod, FMLFileResourcePack:Shelves Mod
-[10:20:14] [Client thread/INFO]: SoundSystem shutting down...
-[10:20:14] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
-[10:20:14] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[10:20:15] [Thread-9/INFO]: Initializing LWJGL OpenAL
-[10:20:15] [Thread-9/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[10:20:16] [Thread-9/INFO]: OpenAL initialized.
-[10:20:16] [Sound Library Loader/INFO]: Sound engine started
-[10:20:17] [Client thread/INFO]: Created: 512x512 textures-atlas
-[10:20:49] [Server thread/INFO]: Starting integrated minecraft server version 1.8
-[10:20:49] [Server thread/INFO]: Generating keypair
-[10:20:49] [Server thread/INFO]: Preparing start region for level 0
-[10:20:50] [Server thread/INFO]: Preparing spawn area: 45%
-[10:20:51] [Server thread/INFO]: Changing view distance to 8, from 10
-[10:20:52] [Server thread/INFO]: Player895[local:E:ac98717f] logged in with entity id 33 at (229.19231633867403, 65.0, -206.23750001192093)
-[10:20:52] [Server thread/INFO]: Player895 joined the game
-[10:20:58] [Server thread/INFO]: Player895 has just earned the achievement [Taking Inventory]
-[10:20:58] [Client thread/INFO]: [CHAT] Player895 has just earned the achievement [Taking Inventory]
-[10:24:25] [Server thread/INFO]: Saving and pausing game...
-[10:24:25] [Server thread/INFO]: Saving chunks for level 'Survival'/Overworld
-[10:24:25] [Server thread/INFO]: Saving chunks for level 'Survival'/Nether
-[10:24:25] [Server thread/INFO]: Saving chunks for level 'Survival'/The End
-[10:24:27] [Server thread/INFO]: Stopping server
-[10:24:27] [Server thread/INFO]: Saving players
-[10:24:27] [Server thread/INFO]: Saving worlds
-[10:24:27] [Server thread/INFO]: Saving chunks for level 'Survival'/Overworld
-[10:24:27] [Server thread/INFO]: Saving chunks for level 'Survival'/Nether
-[10:24:27] [Server thread/INFO]: Saving chunks for level 'Survival'/The End
-[10:24:28] [Client thread/INFO]: Stopping!
-[10:24:28] [Client thread/INFO]: SoundSystem shutting down...
-[10:24:28] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[13:36:30] [Client thread/INFO]: Setting user: Player157
+[13:36:30] [Client thread/INFO]: (Session ID is token:FML:Player157)
+[13:36:33] [Client thread/INFO]: LWJGL Version: 2.9.1
+[13:36:38] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Test Mod 01, FMLFileResourcePack:Ore Detect Mod, FMLFileResourcePack:Shelves Mod
+[13:36:38] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[13:36:38] [Thread-7/INFO]: Initializing LWJGL OpenAL
+[13:36:38] [Thread-7/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[13:36:39] [Thread-7/INFO]: OpenAL initialized.
+[13:36:39] [Sound Library Loader/INFO]: Sound engine started
+[13:36:41] [Client thread/INFO]: Created: 512x512 textures-atlas
+[13:36:43] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Test Mod 01, FMLFileResourcePack:Ore Detect Mod, FMLFileResourcePack:Shelves Mod
+[13:36:43] [Client thread/INFO]: SoundSystem shutting down...
+[13:36:43] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[13:36:43] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[13:36:43] [Thread-9/INFO]: Initializing LWJGL OpenAL
+[13:36:43] [Thread-9/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[13:36:44] [Thread-9/INFO]: OpenAL initialized.
+[13:36:44] [Sound Library Loader/INFO]: Sound engine started
+[13:36:46] [Client thread/INFO]: Created: 512x512 textures-atlas
+[13:36:58] [Server thread/INFO]: Starting integrated minecraft server version 1.8
+[13:36:58] [Server thread/INFO]: Generating keypair
+[13:36:58] [Server thread/INFO]: Preparing start region for level 0
+[13:36:59] [Server thread/INFO]: Preparing spawn area: 56%
+[13:37:00] [Server thread/INFO]: Changing view distance to 8, from 10
+[13:37:01] [Server thread/INFO]: Player157[local:E:0f2588d0] logged in with entity id 26 at (228.63883396896634, 65.0, -206.76249998807907)
+[13:37:01] [Server thread/INFO]: Player157 joined the game
+[13:37:56] [Server thread/INFO]: Saving and pausing game...
+[13:37:56] [Server thread/INFO]: Saving chunks for level 'Survival'/Overworld
+[13:37:56] [Server thread/INFO]: Saving chunks for level 'Survival'/Nether
+[13:37:56] [Server thread/INFO]: Saving chunks for level 'Survival'/The End
+[13:44:09] [Server thread/INFO]: Saving and pausing game...
+[13:44:09] [Server thread/INFO]: Saving chunks for level 'Survival'/Overworld
+[13:44:10] [Server thread/INFO]: Saving chunks for level 'Survival'/Nether
+[13:44:10] [Server thread/INFO]: Saving chunks for level 'Survival'/The End
+[13:44:41] [Server thread/INFO]: Saving and pausing game...
+[13:44:41] [Server thread/INFO]: Saving chunks for level 'Survival'/Overworld
+[13:44:41] [Server thread/INFO]: Saving chunks for level 'Survival'/Nether
+[13:44:41] [Server thread/INFO]: Saving chunks for level 'Survival'/The End
+[13:45:00] [Server thread/INFO]: Saving and pausing game...
+[13:45:00] [Server thread/INFO]: Saving chunks for level 'Survival'/Overworld
+[13:45:00] [Server thread/INFO]: Saving chunks for level 'Survival'/Nether
+[13:45:00] [Server thread/INFO]: Saving chunks for level 'Survival'/The End
+[13:45:21] [Server thread/INFO]: Player157 has just earned the achievement [Taking Inventory]
+[13:45:21] [Client thread/INFO]: [CHAT] Player157 has just earned the achievement [Taking Inventory]
+[13:46:07] [Server thread/INFO]: Saving and pausing game...
+[13:46:07] [Server thread/INFO]: Saving chunks for level 'Survival'/Overworld
+[13:46:07] [Server thread/INFO]: Saving chunks for level 'Survival'/Nether
+[13:46:07] [Server thread/INFO]: Saving chunks for level 'Survival'/The End
+[14:11:50] [Server thread/INFO]: Saving and pausing game...
+[14:11:50] [Server thread/INFO]: Saving chunks for level 'Survival'/Overworld
+[14:11:50] [Server thread/INFO]: Saving chunks for level 'Survival'/Nether
+[14:11:50] [Server thread/INFO]: Saving chunks for level 'Survival'/The End

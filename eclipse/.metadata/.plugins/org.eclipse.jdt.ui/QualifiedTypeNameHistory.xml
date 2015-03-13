@@ -19,4 +19,8 @@
 <fullyQualifiedTypeName name="net.minecraft.client.renderer.entity.RenderManager"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="net.minecraft.client.renderer.entity.RenderEnderman"/>
+<fullyQualifiedTypeName name="net.minecraft.client.Minecraft"/>
+<fullyQualifiedTypeName name="net.minecraftforge.fml.client.registry.ClientRegistry"/>
+<fullyQualifiedTypeName name="net.minecraft.util.BlockPos"/>
+<fullyQualifiedTypeName name="net.minecraft.block.state.IBlockState"/>
 </qualifiedTypeNameHistroy>

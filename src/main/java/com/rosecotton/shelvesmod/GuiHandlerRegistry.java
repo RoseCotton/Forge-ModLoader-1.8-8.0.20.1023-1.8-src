@@ -1,10 +1,10 @@
 package com.rosecotton.shelvesmod;
 
+import java.util.HashMap;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
-
-import java.util.HashMap;
 
 /**
  * User: brandon3055

@@ -2,21 +2,18 @@ package com.rosecotton.shelvesmod;
 import java.util.Arrays;
 
 import net.minecraft.block.BlockChest;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-//import net.minecraft.network.INetworkManager;
-import net.minecraft.network.Packet;
+import net.minecraft.nbt.NBTTagList;
 //import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IChatComponent;
-import net.minecraft.world.World;
-import net.minecraft.nbt.NBTTagList;
+//import net.minecraft.network.INetworkManager;
 
 public class ShelfTitleEntity extends TileEntity implements IInventory {
 	final int NUMBER_OF_SLOTS = 4;
@@ -27,7 +24,7 @@ public class ShelfTitleEntity extends TileEntity implements IInventory {
 	// will add a key for this container to the lang file so we can name it in the GUI
 	@Override
 	public String getName() {
-		return "Block Shelf"; 
+		return "ShelfTitleEntity"; 
 	}
 
 @Override

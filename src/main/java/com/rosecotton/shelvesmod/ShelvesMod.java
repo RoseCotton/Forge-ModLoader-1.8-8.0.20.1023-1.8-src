@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.resources.model.ModelResourceLocation;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -20,8 +19,6 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.LanguageRegistry;
 import net.minecraftforge.fml.relauncher.Side;
-
-import com.rosecotton.shelvesmod.BlockShelf;
 //import com.becky.testmod01.Testmod01;
 
 @Mod(modid = ShelvesMod.MODID, name = ShelvesMod.MODNAME, version = ShelvesMod.VERSION) 
@@ -88,7 +85,8 @@ public class ShelvesMod
 	  	    //final int DEFAULT_ITEM_SUBTYPE = 0;
 	  	    //Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(itemBlockSimple, DEFAULT_ITEM_SUBTYPE, itemModelResourceLocation);
 
-	  	    ClientRegistry.bindTileEntitySpecialRenderer(ShelfTitleEntity.class, new TileShelfRender());
+	  	    //ClientRegistry.bindTileEntitySpecialRenderer(ShelfTitleEntity.class, new TileShelfRender(null, renderItem));
+	  		ClientRegistry.bindTileEntitySpecialRenderer(ShelfTitleEntity.class, new TileShelfRender(Minecraft.getMinecraft().getRenderManager(), Minecraft.getMinecraft().getRenderItem()));
 	  	}
 	    GameRegistry.registerTileEntity(ShelfTitleEntity.class, "Shelf_tesr_te");
 	  	
