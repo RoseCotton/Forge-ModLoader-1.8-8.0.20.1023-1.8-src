@@ -1,0 +1,216 @@
+package com.rosecotton.shelvesmod;
+
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.tileentity.RenderItemFrame;
+import net.minecraft.item.Item;
+import org.lwjgl.opengl.GL11;
+
+//import com.draco18s.artifacts.DragonArtifacts;
+//import com.draco18s.artifacts.entity.ShelfTitleEntity;
+//import com.draco18s.artifacts.item.ItemArtifact;
+//import com.draco18s.artifacts.item.ItemArtifactArmor;
+
+import net.minecraft.block.Block;
+import net.minecraft.client.gui.FontRenderer;
+//import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.StatCollector;
+
+public class RenderShelfItems extends TileEntitySpecialRenderer 
+{
+
+	//public RenderShelfItems(RenderManager p_i46166_1_, RenderItem p_i46166_2_) {
+		//super(p_i46166_1_, p_i46166_2_);
+		// TODO Auto-generated constructor stub
+		
+		private ModelShelf shelf = new ModelShelf();
+		
+		//@Override
+		public void renderTileEntityAt(TileEntity tileentity, double d0, double d1, double d2, float f) {
+			shelf.render(tileentity, d0, d1, d2);
+			
+			if(tileentity instanceof ShelfTitleEntity) {
+				ShelfTitleEntity ped = (ShelfTitleEntity)tileentity;
+				if(ped.itemEnt != null && DragonArtifacts.renderNamesInPedestals && (ped.itemEnt.getEntityItem().getItem() == ItemArtifact.instance || ped.itemEnt.getEntityItem().getItem() instanceof ItemArtifactArmor)) {
+					//"Artifact"
+					//String s = ped.itemEnt.getEntityItem().stackTagCompound.getString("name");
+					NBTTagCompound nbt = ped.itemEnt.getEntityItem().stackTagCompound;
+					String n = "";
+					
+					if(ItemArtifact.doEnchName) {
+	    				n += StatCollector.translateToLocal(nbt.getString("enchName")) + " ";
+	    			}
+	    			if(ItemArtifact.doAdjName) {
+	    				n += nbt.getString("preadj") + " ";
+	    			}
+	    			if(ItemArtifact.doMatName) {
+	    				n += nbt.getString("matName");
+	    			}
+					renderLabel(ped, n, d0+0.5, d1+0.625, d2+0.5, 16);
+					n = "";
+	    			if(!(ItemArtifact.doEnchName || ItemArtifact.doMatName || ItemArtifact.doAdjName)) {
+	    				n += "Artifact ";
+	    			}
+	    			n += nbt.getString("iconName");
+	    			if(ItemArtifact.doAdjName) {
+	    				n += " " + nbt.getString("postadj");
+	    			}
+					renderLabel(ped, n, d0+0.5, d1+0.55, d2+0.5, 16);
+				}
+			}
+		}
+		
+		protected void renderLabel(ShelfTitleEntity entity, String s, double d, double d1, double d2, int i) {
+			double f = entity.getDistanceFrom(this.field_147501_a.staticPlayerX, this.field_147501_a.staticPlayerY, this.field_147501_a.staticPlayerZ);
+		    if (f > i) {
+		      return;
+		    }
+		    FontRenderer fontrenderer = this.field_147501_a.getFontRenderer();
+		    float f1 = 1.6F;
+		    float f2 = 0.01666667F * f1;
+		    double angle = Math.toRadians(entity.rotation);
+			float sin = (float)(Math.sin(angle));
+			float cos = (float)(Math.cos(angle));
+			sin = Math.round(sin*100)/100;
+			cos = Math.round(cos*100)/100;
+		    
+		    GL11.glPushMatrix();
+		    GL11.glTranslatef((float)d+(float)(sin*0.35), (float)d1, (float)d2-(float)(cos*0.35));
+		    GL11.glNormal3f(0.0F, 1.0F, 0.0F);
+		    GL11.glRotatef(-1*entity.rotation, 0, 1, 0);
+		    GL11.glScalef(0.3f, 0.3f, 0.3f);
+		    //GL11.glRotatef(-this.tileEntityRenderer.playerYaw, 0.0F, 1.0F, 0.0F);
+		    //GL11.glRotatef(this.tileEntityRenderer.playerPitch, 1.0F, 0.0F, 0.0F);
+		    GL11.glScalef(-f2, -f2, f2);
+		    GL11.glDisable(2896);
+		    GL11.glDepthMask(false);
+		    GL11.glDisable(2929);
+		    GL11.glEnable(3042);
+		    GL11.glBlendFunc(770, 771);
+		    Tessellator tessellator = Tessellator.instance;
+		    byte byte0 = 0;
+		    GL11.glDisable(3553);
+		    tessellator.disableColor();
+		    tessellator.startDrawingQuads();
+		    int j = fontrenderer.getStringWidth(s) / 2;
+		    tessellator.setColorRGBA_F(0.0F, 0.0F, 0.0F, 0.35F);
+		    tessellator.addVertex(-j - 1, -1 + byte0, 0.0D);
+		    tessellator.addVertex(-j - 1, 8 + byte0, 0.0D);
+		    tessellator.addVertex(j + 1, 8 + byte0, 0.0D);
+		    tessellator.addVertex(j + 1, -1 + byte0, 0.0D);
+		    tessellator.draw();
+		    //tessellator.func_78381_a();
+		    GL11.glEnable(3553);
+		    fontrenderer.drawString(s, -fontrenderer.getStringWidth(s) / 2, byte0, 553648127);
+		    GL11.glEnable(2929);
+		    GL11.glDepthMask(true);
+		    fontrenderer.drawString(s, -fontrenderer.getStringWidth(s) / 2, byte0, -1);
+		    GL11.glEnable(2896);
+		    GL11.glDisable(3042);
+		    GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		    GL11.glPopMatrix();
+		  
+		
+		int textureWidth = 64;
+		int textureHeight = 32;
+
+		ModelRenderer itemStack_0 = new ModelRenderer(Item.getItemById(ShelfTitleEntity.getField(0)), 0, 17);
+		itemStack_0.addBox(0F, 0F, 0F, 10, 5, 10);
+		itemStack_0.setRotationPoint(-5F, 19F, -5F);
+		itemStack_0.setTextureSize(64, 32);
+		itemStack_0.mirror = true;
+		setRotation(itemStack_0, 0F, 0F, 0F);
+		pillar = new ModelRenderer(this, 40, 0);
+		pillar.addBox(0F, 0F, 0F, 6, 8, 6);
+		pillar.setRotationPoint(-3F, 10F, -3F);
+		pillar.setTextureSize(64, 32);
+		pillar.mirror = true;
+		setRotation(pillar, 0F, 0F, 0F);
+		platform = new ModelRenderer(this, 0, 0);
+		platform.addBox(0F, 0F, 0F, 10, 1, 10);
+		platform.setRotationPoint(-5F, 18F, -5F);
+		platform.setTextureSize(64, 32);
+		platform.mirror = true;
+		setRotation(platform, 0F, 0F, 0F);
+		base = new ModelRenderer(this, 0, 0);
+		base.addBox(0F, 0F, 0F, 10, 2, 10);
+		base.setRotationPoint(-5F, 8F, -5F);
+		base.setTextureSize(64, 32);
+		base.mirror = true;
+		setRotation(base, 0F, 0F, 0F);
+	//}
+
+	public void render(TileEntity te, double x, double y, double z) {
+		ShelfTitleEntity es = (ShelfTitleEntity)te;
+
+		if(es.itemEnt != null) {
+			GL11.glPushMatrix();
+			//System.out.println("Rot: " + es.rotation);
+			double angle = Math.toRadians(es.rotation);
+			float sin = (float)(Math.sin(angle));
+			float cos = (float)(Math.cos(angle));
+			sin = Math.round(sin*100)/100;
+			cos = Math.round(cos*100)/100;
+			//System.out.println("Sin: " + sin);
+			//System.out.println("Cos: " + cos);
+			
+			GL11.glTranslatef((float)x + 0.5F + (float)(sin*0.25), (float)y + 0.76F, (float)z + 0.5F - (float)(cos*0.25));
+			
+			GL11.glRotatef(-1*es.rotation, 0, 1, 0);
+			GL11.glRotatef(90, 1, 0, 0);
+			
+			//RenderHelper.enableStandardItemLighting();
+			RenderManager.instance.renderEntityWithPosYaw(es.itemEnt, 0, 0, 0, 0, 0);
+			//RenderHelper.disableStandardItemLighting();
+			GL11.glPopMatrix();
+		}
+		GL11.glPushMatrix();
+		GL11.glTranslatef((float)x + 0.5f, (float)y - 0.5f, (float)z + 0.5f);
+		//GL11.glScalef(0.5f, 0.5f, 0.5f);
+		//FMLClientHandler.instance().getClient().renderEngine.bindTexture(es.getModelTexture());
+		ResourceLocation rl = new ResourceLocation("artifacts:textures/blocks/pedestal.png");
+		Minecraft.getMinecraft().renderEngine.bindTexture(rl);
+		this.render();
+		GL11.glPopMatrix();
+	}
+
+	private void render() {
+		pillar.render(0.0625F);
+		platform.render(0.0625F);
+		base.render(0.0625F);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		itemStack_0.render(0.0625F);
+		GL11.glDisable(GL11.GL_BLEND);
+	}
+
+	private void setRotation(ModelRenderer model, float x, float y, float z)
+	{
+		model.rotateAngleX = x;
+		model.rotateAngleY = y;
+		model.rotateAngleZ = z;
+	}
+
+	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
+	{
+		super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
+	}
+
+	@Override
+	public void renderTileEntityAt(TileEntity p_180535_1_, double posX,
+			double posZ, double p_180535_6_, float p_180535_8_, int p_180535_9_) {
+		// TODO Auto-generated method stub
+		
+	}
+}
+
+
+
+
+
+

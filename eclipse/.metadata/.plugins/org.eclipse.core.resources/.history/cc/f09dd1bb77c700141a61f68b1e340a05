@@ -1,0 +1,42 @@
+package com.rosecotton.shelvesmod;
+
+
+
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+@SideOnly(Side.CLIENT)
+public class ModelShelf extends ModelBase
+{
+    public ModelRenderer shelfItem;
+    //public ModelRenderer shelfItem_1;
+    //public ModelRenderer shelfItem_2;    
+    //public ModelRenderer shelfItem_3;
+    //private static final String __OBFID = "CL_00002630";
+
+    public ModelShelf()
+    {
+    	
+        this.textureWidth = 4;
+        this.textureHeight = 4;
+        this.shelfItem = new ModelRenderer(this, 0, 0);
+        //this.shelfItem_0.addBox(-10.0F, 0.0F, -2.0F, 20, 40, 1, 0.0F);
+        //this.shelfItem_1 = new ModelRenderer(this, 44, 0);
+        //this.shelfItem_1.addBox(-1.0F, -30.0F, -1.0F, 2, 42, 2, 0.0F);
+        //this.shelfItem_2 = new ModelRenderer(this, 0, 42);
+        //this.shelfItem_2.addBox(-10.0F, -32.0F, -1.0F, 20, 2, 2, 0.0F);
+        //this.shelfItem_3 = new ModelRenderer(this, 0, 42);
+        //this.shelfItem_3.addBox(-10.0F, -32.0F, -1.0F, 20, 2, 2, 0.0F);
+        
+    }
+
+   /* public void func_178687_a()
+    {
+        this.bannerSlate.rotationPointY = -32.0F;
+        this.bannerSlate.render(0.0625F);
+        this.bannerStand.render(0.0625F);
+        this.bannerTop.render(0.0625F);
+    }*/
+}

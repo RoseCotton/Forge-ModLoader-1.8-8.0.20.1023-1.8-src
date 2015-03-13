@@ -1,0 +1,7 @@
+package com.rosecotton.shelvesmod;
+
+import net.minecraft.client.renderer.titleentity.RenderItemFrame;
+
+public class RenderShelfItems {
+
+}

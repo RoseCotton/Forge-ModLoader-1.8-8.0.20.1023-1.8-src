@@ -1,0 +1,15 @@
+package com.rosecotton.shelvesmod;
+
+import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.tileentity.RenderItemFrame;
+
+public class RenderShelfItems extends RenderItemFrame 
+{
+
+	public RenderShelfItems(RenderManager p_i46166_1_, RenderItem p_i46166_2_) {
+		super(p_i46166_1_, p_i46166_2_);
+		// TODO Auto-generated constructor stub
+	}
+
+}

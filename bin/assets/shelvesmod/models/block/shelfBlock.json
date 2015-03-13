@@ -1,0 +1,52 @@
+# THIS IS THE BLOCK MDOEL FILE. IT GOES IN THE assets/shelvesmod/models/block/ folder.
+# Generated using sheenrox82's JSON File Generator for Minecraft 1.8.
+
+{
+
+    "textures": {
+        "all": "shelvesmod:blocks/shelfBlock"
+    },
+
+
+    "elements": [
+   
+        {   
+            "from": [ 0, 0, 0 ],
+            "to": [ 16, 2, 16 ],
+            "faces": {
+                "down": { "uv": [ 0, 0, 16, 16 ], "texture":"all", "cullface": "down"},
+                "up":   { "uv": [ 0, 0, 16, 16 ], "texture":"all" },
+                "north": { "uv": [ 0, 0, 16, 2 ], "texture":"all","cullface": "north" },
+                "south": { "uv": [ 0, 0, 16, 2 ], "texture":"all", "cullface": "south" },
+                "west": { "uv": [ 0, 0, 16, 2 ], "texture":"all", "cullface": "west" },
+                "east": { "uv": [ 0, 0, 16, 2 ], "texture":"all", "cullface": "east" }
+            }
+        }, 
+        
+        {   
+            "from": [ 0, 2, 0 ],
+            "to": [ 16, 10, 10 ],
+            "faces": {
+                "down": { "uv": [ 0, 0, 16, 10 ], "texture":"all", "cullface": "down"},
+                "up":   { "uv": [ 0, 0, 16, 10 ], "texture":"all" },
+                "north": { "uv": [ 0, 2, 16, 10 ], "texture":"all", "cullface": "north" },
+                "south": { "uv": [ 0, 2, 16, 10 ], "texture":"all", "cullface": "south" },
+                "west": { "uv": [ 0, 2, 10, 10 ], "texture":"all", "cullface": "west" },
+                "east": { "uv": [ 0, 2, 10, 10 ], "texture":"all", "cullface": "east" }
+            }
+        }, 
+        
+        {   
+            "from": [ 0, 10, 0 ],
+            "to": [ 16, 16, 2 ],
+            "faces": {
+                "down": { "uv": [ 0, 0, 16, 2 ], "texture":"all", "cullface": "down"},
+                "up":   { "uv": [ 0, 0, 16, 2 ] , "texture":"all"},
+                "north": { "uv": [ 0, 10, 16, 16 ], "texture":"all", "cullface": "north" },
+                "south": { "uv": [ 0, 10, 16, 16 ], "texture":"all", "cullface": "south" },
+                "west": { "uv": [ 0, 10, 2, 16 ], "texture":"all", "cullface": "west" },
+                "east": { "uv": [ 0, 10, 2, 16 ], "texture":"all", "cullface": "east" }
+            }
+        }
+    ]
+}

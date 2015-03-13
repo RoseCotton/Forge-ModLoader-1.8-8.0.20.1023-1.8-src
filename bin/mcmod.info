@@ -1,0 +1,44 @@
+[
+{
+  "modid": "testmod01",
+  "name": "Test Mod 01",
+  "description": "Example placeholder mod.",
+  "version": "1.0",
+  "mcversion": "${mcversion}",
+  "url": "",
+"updateUrl": "",
+  "authorList": ["RoseCotton"],
+  "credits": "The Forge and FML guys, for making this example",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+},
+{
+  "modid": "shelvesmod",
+  "name": "Shelves Mod",
+  "description": "Adds shelves for storage and display.",
+  "version": "1.0",
+  "mcversion": "${mcversion}",
+  "url": "",
+"updateUrl": "",
+  "authorList": ["RoseCotton"],
+  "credits": "Forge guys and The Internet",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+},
+{
+  "modid": "oredetectmod",
+  "name": "Ore Detect Mod",
+  "description": "Detect nearby ores.",
+  "version": "1.0",
+  "mcversion": "${mcversion}",
+  "url": "",
+"updateUrl": "",
+  "authorList": ["RoseCotton"],
+  "credits": "Forge guys and The Internet",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

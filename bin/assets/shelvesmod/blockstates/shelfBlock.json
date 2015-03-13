@@ -1,0 +1,20 @@
+# THIS IS THE BLOCKSTATE FILE. IT GOES IN THE assets/shelvesmod/blockstates/ folder.
+# Generated using sheenrox82's JSON File Generator for Minecraft 1.8.
+
+
+{
+    "variants": {
+        "facing=east,section=bottom": { "model": "shelvesmod:shelfBlock" , "y": 270, "uvlock": true },
+        "facing=west,section=bottom": { "model": "shelvesmod:shelfBlock", "y": 90, "uvlock": true },
+        "facing=south,section=bottom": { "model": "shelvesmod:shelfBlock", "uvlock": true },
+        "facing=north,section=bottom": { "model": "shelvesmod:shelfBlock", "y": 180, "uvlock": true },     
+        "facing=east,section=middle": { "model": "shelvesmod:shelfBlock",  "y": 270, "uvlock": true },
+        "facing=west,section=middle": { "model": "shelvesmod:shelfBlock", "y": 90, "uvlock": true },
+        "facing=south,section=middle": { "model": "shelvesmod:shelfBlock", "uvlock": true },
+        "facing=north,section=middle": { "model": "shelvesmod:shelfBlock", "y": 180, "uvlock": true },
+        "facing=east,section=top"   : { "model": "shelvesmod:shelfBlock",  "y": 270, "uvlock": true },
+        "facing=west,section=top"   : { "model": "shelvesmod:shelfBlock", "y": 90, "uvlock": true },
+        "facing=south,section=top"   : { "model": "shelvesmod:shelfBlock",  "uvlock": true },
+        "facing=north,section=top"   : { "model": "shelvesmod:shelfBlock", "y": 180, "uvlock": true }
+    }
+}

@@ -1,0 +1,33 @@
+package com.rosecotton.shelvesmod;
+/*
+import net.minecraft.client.renderer.entity.RenderEntityItem;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.tileentity.TileEntity;
+
+public class RenderShelfTileEntity 
+{
+	public RenderShelfTileEntity(ShelfTitleEntity shelfTileEntity)
+	{
+		RenderEntityItem renderEntityItem = new RenderEntityItem(null, null);
+		double x = ((TileEntity)shelfTileEntity).getPos().getX();
+		double y = ((TileEntity)shelfTileEntity).getPos().getY();
+		double z = ((TileEntity)shelfTileEntity).getPos().getZ();
+		EntityItem shelfEntityItem[] = new EntityItem[4];
+		for (int n = 0; n <4; n++)
+		{
+			if (shelfEntityItem[n] != null)
+			{
+				shelfEntityItem[n].setEntityItemStack(shelfTileEntity.itemStacks[n]);
+				double xPlus = x + (double)((4+(n%2)*8)/16);
+				double yPlus = y + (double)((2+(n/2)*6)/16);
+				double zPlus = z + (double)((13-(n/2)*8)/16);
+					
+				renderEntityItem.func_177075_a(shelfEntityItem[n], xPlus, yPlus, zPlus, 0.0625f, 1.05f);
+			}
+				
+
+		}
+			
+	}
+}
+*/

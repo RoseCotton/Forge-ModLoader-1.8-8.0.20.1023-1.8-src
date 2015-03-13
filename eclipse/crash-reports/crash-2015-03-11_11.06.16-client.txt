@@ -1,0 +1,113 @@
+---- Minecraft Crash Report ----
+// Oops.
+
+Time: 3/11/15 11:06 AM
+Description: Updating screen events
+
+java.lang.NullPointerException: Updating screen events
+	at com.rosecotton.shelvesmod.RenderShelfTileEntity.<init>(RenderShelfTileEntity.java:18)
+	at com.rosecotton.shelvesmod.ShelfTitleEntity.setInventorySlotContents(ShelfTitleEntity.java:135)
+	at com.rosecotton.shelvesmod.ShelfTitleEntity.decrStackSize(ShelfTitleEntity.java:102)
+	at net.minecraft.inventory.Slot.decrStackSize(Slot.java:94)
+	at net.minecraft.inventory.Container.slotClick(Container.java:320)
+	at net.minecraft.client.multiplayer.PlayerControllerMP.windowClick(PlayerControllerMP.java:475)
+	at net.minecraft.client.gui.inventory.GuiContainer.handleMouseClick(GuiContainer.java:637)
+	at net.minecraft.client.gui.inventory.GuiContainer.mouseClicked(GuiContainer.java:387)
+	at net.minecraft.client.gui.GuiScreen.handleMouseInput(GuiScreen.java:525)
+	at net.minecraft.client.gui.GuiScreen.handleInput(GuiScreen.java:497)
+	at net.minecraft.client.Minecraft.runTick(Minecraft.java:1653)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1016)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:346)
+	at net.minecraft.client.main.Main.main(Main.java:117)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:85)
+	at GradleStart.main(GradleStart.java:45)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at com.rosecotton.shelvesmod.RenderShelfTileEntity.<init>(RenderShelfTileEntity.java:18)
+	at com.rosecotton.shelvesmod.ShelfTitleEntity.setInventorySlotContents(ShelfTitleEntity.java:135)
+	at com.rosecotton.shelvesmod.ShelfTitleEntity.decrStackSize(ShelfTitleEntity.java:102)
+	at net.minecraft.inventory.Slot.decrStackSize(Slot.java:94)
+	at net.minecraft.inventory.Container.slotClick(Container.java:320)
+	at net.minecraft.client.multiplayer.PlayerControllerMP.windowClick(PlayerControllerMP.java:475)
+	at net.minecraft.client.gui.inventory.GuiContainer.handleMouseClick(GuiContainer.java:637)
+	at net.minecraft.client.gui.inventory.GuiContainer.mouseClicked(GuiContainer.java:387)
+	at net.minecraft.client.gui.GuiScreen.handleMouseInput(GuiScreen.java:525)
+	at net.minecraft.client.gui.GuiScreen.handleInput(GuiScreen.java:497)
+
+-- Affected screen --
+Details:
+	Screen name: com.rosecotton.shelvesmod.GuiInventoryShelf
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Player680'/312, l='MpServer', x=-231.86, y=77.00, z=61.09]]
+	Chunk stats: MultiplayerChunkCache: 289, 289
+	Level seed: 0
+	Level generator: ID 00 - default, ver 1. Features enabled: false
+	Level generator options: 
+	Level spawn location: -228.00,64.00,60.00 - World: (-228,64,60), Chunk: (at 12,4,12 in -15,3; contains blocks -240,0,48 to -225,255,63), Region: (-1,0; contains chunks -32,0 to -1,31, blocks -512,0,0 to -1,255,511)
+	Level time: 25509 game time, 25509 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 61 total; [EntityChicken['Chicken'/135, l='MpServer', x=-262.53, y=71.00, z=-12.81], EntityChicken['Chicken'/136, l='MpServer', x=-262.50, y=78.00, z=14.44], EntityCow['Cow'/137, l='MpServer', x=-266.81, y=68.00, z=82.75], EntityChicken['Chicken'/138, l='MpServer', x=-262.50, y=66.00, z=91.28], EntityChicken['Chicken'/139, l='MpServer', x=-271.03, y=71.02, z=108.50], EntityChicken['Chicken'/140, l='MpServer', x=-271.38, y=75.00, z=114.41], EntityChicken['Chicken'/141, l='MpServer', x=-267.69, y=71.00, z=138.53], EntityChicken['Chicken'/142, l='MpServer', x=-263.50, y=70.00, z=139.09], EntityChicken['Chicken'/146, l='MpServer', x=-263.34, y=70.00, z=134.66], EntityChicken['Chicken'/147, l='MpServer', x=-265.47, y=70.00, z=134.59], EntityItem['item.item.egg'/2330, l='MpServer', x=-262.19, y=78.00, z=14.19], EntityChicken['Chicken'/157, l='MpServer', x=-245.72, y=67.00, z=-18.47], EntityChicken['Chicken'/158, l='MpServer', x=-253.66, y=71.00, z=-5.53], EntityBat['Bat'/160, l='MpServer', x=-253.72, y=16.06, z=130.00], EntityCow['Cow'/175, l='MpServer', x=-235.41, y=79.00, z=55.34], EntityBat['Bat'/177, l='MpServer', x=-234.63, y=20.28, z=132.25], EntityBat['Bat'/183, l='MpServer', x=-216.75, y=57.10, z=60.75], EntityChicken['Chicken'/190, l='MpServer', x=-207.31, y=64.00, z=-6.56], EntityChicken['Chicken'/191, l='MpServer', x=-202.50, y=64.00, z=-4.69], EntityChicken['Chicken'/192, l='MpServer', x=-201.59, y=64.00, z=12.09], EntityPig['Pig'/193, l='MpServer', x=-192.19, y=64.00, z=6.38], EntityPig['Pig'/194, l='MpServer', x=-201.03, y=64.00, z=9.00], EntityPig['Pig'/195, l='MpServer', x=-195.06, y=64.00, z=7.81], EntityChicken['Chicken'/196, l='MpServer', x=-206.63, y=64.00, z=4.84], EntityPig['Pig'/197, l='MpServer', x=-204.16, y=64.00, z=5.41], EntityChicken['Chicken'/69, l='MpServer', x=-311.41, y=82.00, z=9.59], EntityItem['item.item.egg'/198, l='MpServer', x=-200.66, y=64.00, z=12.50], EntityCow['Cow'/199, l='MpServer', x=-206.03, y=74.00, z=25.53], EntityChicken['Chicken'/200, l='MpServer', x=-202.66, y=67.00, z=21.50], EntityCow['Cow'/201, l='MpServer', x=-204.06, y=70.00, z=30.09], EntityChicken['Chicken'/75, l='MpServer', x=-308.50, y=78.00, z=87.50], EntityBat['Bat'/462, l='MpServer', x=-167.88, y=53.00, z=13.66], EntityChicken['Chicken'/78, l='MpServer', x=-311.31, y=73.00, z=102.34], EntityChicken['Chicken'/210, l='MpServer', x=-185.75, y=66.00, z=3.50], EntityChicken['Chicken'/211, l='MpServer', x=-188.63, y=64.00, z=12.41], EntityPlayerSP['Player680'/312, l='MpServer', x=-231.86, y=77.00, z=61.09], EntityChicken['Chicken'/216, l='MpServer', x=-163.28, y=70.00, z=2.56], EntityChicken['Chicken'/90, l='MpServer', x=-288.34, y=76.00, z=-17.56], EntityChicken['Chicken'/91, l='MpServer', x=-299.49, y=75.14, z=-3.53], EntityChicken['Chicken'/92, l='MpServer', x=-294.47, y=78.00, z=-7.38], EntityChicken['Chicken'/95, l='MpServer', x=-302.31, y=81.00, z=26.56], EntityItem['item.item.egg'/96, l='MpServer', x=-291.00, y=80.00, z=17.06], EntityChicken['Chicken'/97, l='MpServer', x=-291.44, y=80.00, z=17.31], EntityChicken['Chicken'/98, l='MpServer', x=-297.22, y=83.00, z=39.13], EntityChicken['Chicken'/100, l='MpServer', x=-296.41, y=83.00, z=39.75], EntityChicken['Chicken'/101, l='MpServer', x=-297.53, y=72.00, z=92.34], EntityChicken['Chicken'/229, l='MpServer', x=-151.88, y=68.00, z=-10.28], EntityChicken['Chicken'/102, l='MpServer', x=-291.69, y=71.00, z=99.34], EntityChicken['Chicken'/230, l='MpServer', x=-158.41, y=71.00, z=-12.34], EntityChicken['Chicken'/103, l='MpServer', x=-298.72, y=69.00, z=117.91], EntityBat['Bat'/489, l='MpServer', x=-168.52, y=47.82, z=68.06], EntityBat['Bat'/363, l='MpServer', x=-186.10, y=17.06, z=118.04], EntityChicken['Chicken'/115, l='MpServer', x=-274.66, y=77.00, z=12.34], EntityItem['item.item.egg'/116, l='MpServer', x=-273.75, y=79.00, z=16.19], EntityChicken['Chicken'/117, l='MpServer', x=-280.25, y=81.00, z=21.53], EntityChicken['Chicken'/118, l='MpServer', x=-282.66, y=74.00, z=81.66], EntityItem['item.item.egg'/119, l='MpServer', x=-283.31, y=70.00, z=106.88], EntityChicken['Chicken'/120, l='MpServer', x=-270.34, y=72.19, z=107.87], EntityChicken['Chicken'/121, l='MpServer', x=-283.66, y=70.00, z=106.50], EntitySquid['Squid'/379, l='MpServer', x=-172.38, y=56.06, z=110.97], EntityBat['Bat'/507, l='MpServer', x=-196.25, y=12.08, z=130.73]]
+	Retry entities: 0 total; []
+	Server brand: fml
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:350)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2586)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:368)
+	at net.minecraft.client.main.Main.main(Main.java:117)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:85)
+	at GradleStart.main(GradleStart.java:45)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8
+	Operating System: Windows 7 (x86) version 6.1
+	Java Version: 1.8.0_31, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) Client VM (mixed mode), Oracle Corporation
+	Memory: 802450408 bytes (765 MB) / 1060372480 bytes (1011 MB) up to 1060372480 bytes (1011 MB)
+	JVM Flags: 3 total; -Xincgc -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 0, allocated: 13, tallocated: 95
+	FML: MCP v9.10 FML v8.0.20.1023 5 mods loaded, 5 mods active
+	mcp{9.05} [Minecraft Coder Pack] (minecraft.jar) Unloaded->Constructed->Pre-initialized->Initialized->Post-initialized->Available->Available->Available->Available
+	FML{8.0.20.1023} [Forge Mod Loader] (fmlSrc-1.8-8.0.20.1023-1.8.jar) Unloaded->Constructed->Pre-initialized->Initialized->Post-initialized->Available->Available->Available->Available
+	testmod01{1.0} [Test Mod 01] (bin) Unloaded->Constructed->Pre-initialized->Initialized->Post-initialized->Available->Available->Available->Available
+	oredetectmod{1.0} [Ore Detect Mod] (bin) Unloaded->Constructed->Pre-initialized->Initialized->Post-initialized->Available->Available->Available->Available
+	shelvesmod{1.0} [Shelves Mod] (bin) Unloaded->Constructed->Pre-initialized->Initialized->Post-initialized->Available->Available->Available->Available
+	Launched Version: 1.8
+	LWJGL: 2.9.1
+	OpenGL: ATI Radeon HD 4800 Series GL version 3.3.11672 Compatibility Profile Context, ATI Technologies Inc.
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: No
+	Is Modded: Definitely; Client brand changed to 'fml'
+	Type: Client (map_client.txt)
+	Resource Packs: []
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)

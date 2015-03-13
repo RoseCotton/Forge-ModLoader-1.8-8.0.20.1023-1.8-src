@@ -1,0 +1,2362 @@
+Changelog:
+Build 1023:
+	dev:
+		Exclude only log4j2 queue from class loader
+		
+		Right now the complete com.mojang package is excluded from the LaunchClassLoader on the server. This means mods can't transform authlib for example which doesn't need to be excluded for the UI to work. By excluding only the specific log4j2 QueueLogAppender, mods can also transform the classes in the com.mojang.authlib package.
+
+Build 1.8-8.0.18.1022-1.8:
+	lumien231: Save the mod list of players in their NetworkDispatcher (Make it accessable for mods)
+
+Build 1.8-8.0.16.1021-1.8:
+	emilevankrieken: Fixed getEffectiveSide() for Netty Server threads
+
+Build 1.8-8.0.14.1020-1.8:
+	LexManos: Finish removing marker in mapping entry names. FMLMissingMappingsEvent/FMLModIdMappingEvent should fire with correct names now.
+
+Build 1.8-8.0.13.1019-1.8:
+	LexManos:
+		Ensure that EntitySpawn and OpenGUI packets are handled in the world thread.
+		Also log all errors that are thrown in FutureTasks.
+
+Build 1.8-8.0.12.1018-1.8:
+	LexManos: Unlink banner block and item id. Mojang should of matched these up but they didn't -.-
+	LexManos: Update Dev mcp mappings to 11-30 snapshot.
+
+Build 1.8-8.0.10.1017-1.8:
+	LexManos: Finalize modded handshakes in the World tick thread. Prevents potential CMEs when login event takes to long to fire.
+
+Build 1.8-8.0.9.1016-1.8:
+	LexManos: Add duplicate protection to ModDiscoverer, do not process files in the mods directory if we already found them in the classpath. {Such as if LiteLoader is installed and added it} Closes #557
+	LexManos: Add details message to MissingModsException and WrongMinecraftVersionException to make the Crash logs more useful.
+
+Build 1.8-8.0.7.1014-1.8:
+	Parker Young: Re-enabled Entity-Render registration
+
+Build 1.8-8.0.5.1012-1.8:
+	bspkrs:
+		changed pass-thru method name to fix MCP name conflict
+		fixed a few old javadoc object name mistakes
+
+Build 1.8-8.0.3.1011-1.8:
+	LexManos: Add the ability to register custom variant names in ModelBakery.
+
+Build 1.8-8.0.2.1009-1.8:
+	LexManos: Removed unneeded rebuild, was toying with where to put it.
+
+Build 1.8-8.0.1.1008-1.8:
+	LexManos: Automatically register BlockStates when block is initally registered, and clear the list when new snapshots are injected. Modders DO NOT touch the registry in Block directly. Closes #537
+
+Build 1.7.10-7.10.86.1007:
+	LexManos: Remove debug code that was causing console spam in Forge.
+	LexManos:
+		Fix FML's package for net.miencraftforge on maven. Fixes uploading of new builds.
+		Note: 1.7.10 builds are bug fixes only while FML/Forge for 1.8 stabelizes.
+
+Build 1.8-7.10.99.1005-1.8:
+	LexManos: Update TerminalTransformer for new FML package. Closes #535
+
+Build 1.8-7.10.98.1004-1.8:
+	LexManos: General class name cleanup, spelling mistakes and FF decompile issues.
+
+Build 1.8-7.10.97.1003-1.8:
+	LexManos:
+		Renamed TileEntityRendererChestHelper -> TileEntityItemStackRenderer
+		  This class is used to render any tile entities in a non-location specific major
+		  Such as EntityItems, In minecarts, Held by entities, anyhting that isn't in world.
+		
+		Switched the class names for BiomeGenForest $1 and $2 as Fernflower decompiled
+		  them in oposite order.
+	LexManos: Take control over Item.BLOCK_TO_ITEM map and register Block's to this map from GameRegistry.
+
+Build 1.8-7.10.95.1002-1.8:
+	sacabrarsyed: added mappings to default build.gradle
+
+Build 1.8-7.10.93.1001-1.8:
+	LexManos: Add joptsimple as a server required library. Closes #531
+
+Build 1.8-7.10.92.1000-1.8:
+	LexManos: Restructure block and item mapping data in world save and network to potentially expand to custom mod ID registry syncing. Tip: ONLY use those functions in GameData that are marked as public API as internal API may change in 1.8.
+
+Build 1.8-7.10.91.999-1.8:
+	bspkrs:
+		Update Config Gui stuff for 1.8
+		updated mappings to snapshot 20140930
+		got rid of derpy generics code
+
+Build 1.7.10-7.10.84.997:
+	LexManos: Add jsr305 dev-time dependancy for Nullable/Nonnull annotations. Unneeded at runtime.
+	LexManos:
+		Add IEventExceptionHandler for EventBus to allow special handeling exceptions that are fired while running an event.
+		Events now track what 'phase' they are in during the execution process. Each EventPriority is a 'phase'.
+		An exception is thrown if the event attempts to set its phase to a previous one.
+
+Build 1.7.10-7.10.82.996:
+	cpw: Allow injecting alternative container types. This is the core support code for allowing sponge plugins!
+
+Build 1.7.10-7.10.81.995:
+	cpw: Clean up import
+	cpw: Is vanilla possible with this mod load, side tests.
+
+Build 1.7.10-7.10.79.994:
+	cpw: Fix derp with ModType annotation. mods should load again now..
+
+Build 1.7.10-7.10.78.993:
+	diesieben07: Add overloaded version of SimpleNetworkWrapper#registerMessage that takes the MessageHandler instance directly, allowing to specify the same handler for multiple messages.
+	diesieben07: Make Keyevent also fire for key releases
+
+Build 1.7.10-7.10.74.992:
+	cpw: Canonicalized file paths in modListFile handling with the minecraftDirectory.
+
+Build 1.7.10-7.10.73.991:
+	cpw:
+		Change the mods and modListFile argument handling a bit. Other tweakers will get a chance at looking
+		at them now - they're only removed right before launch.
+	cpw:
+		Two new features. ModLists can have a "parent" mod list. Circularity will
+		result in a crash, so be careful. Mods specified in a child will override
+		ones from a parent (using the maven group:name:classifier triple to identify -
+		ignoring the version component)
+		
+		Finally, ModSide is now doable in MANIFEST.MF. If you have this, it can tell
+		a mod to only load on a client, or on a dedicated server (though I'd watch out
+		before using the dediserver one, you'll never load in integrated servers then).
+		The default value is BOTH, which means you'll load both sides, other values are
+		CLIENT and SERVER, obviously. Perhaps, also, CAULDRON might be possible?
+
+Build 1.7.10-7.10.71.990:
+	cpw: OK, lets make that a csv list. It'll let you be liteloader and fml in one jar file!
+
+Build 1.7.10-7.10.70.989:
+	cpw:
+		Add in ModType to the jar manifest. If it's present, and doesn't have value "FML"
+		it will be skipped from the modloading cycle. This should let liteloader mods have a .jar extension.
+
+Build 1.7.10-7.10.69.988:
+	jdroque: Allow client handshake to be reset by server to support BungeeCord.
+	cpw:
+		Fix bug with entityspawn - if the entity doesn't extend livingbase, it fails
+		to write a headyaw byte, and everything will be derped for that packet.
+		
+		Fixes #499, but probably a bunch of others.
+	cpw: Wrap the server description box a little bit shorter. Stops the overlapping. Closes #489
+
+Build 1.7.10-7.10.65.987:
+	cpw: Fix java 8u20. Closes #501 and a bunch of other bugs too.
+
+Build 1.7.10-7.10.64.986:
+	cpw: Update for launchwrapper 1.11. Fixes java 6 compatibility.
+
+Build 1.7.10-7.10.63.985:
+	cpw: Mark the promise a success in the outbound handler.
+
+Build 1.7.10-7.10.62.984:
+	cpw: Fix ups from feedback.
+
+Build 1.7.10-7.10.61.983:
+	cpw: ItemStack swapping
+	cpw: Fix NPE from a boolean
+
+Build 1.7.10-7.10.59.982:
+	cpw: Cleanup override warnings
+	cpw: Update to legacylauncher 1.10 and asm 5.0.3
+
+Build 1.7.10-7.10.57.981:
+	cpw: Some more tidying up of the exit handling
+	cpw: More cleanup of exit handling, also add a couple more noise classes to the list of things ignored.
+
+Build 1.7.10-7.10.55.980:
+	cpw: Allow a clean way to exit the game without big ugly warnings, but with logging information available if needed. Closes #496
+
+Build 1.7.10-7.10.54.979:
+	cpw: Extend timeout for client to 5 seconds. Should fix Forge #1322
+	cpw: Fix almost invisible NPE in TerminalTransformer when loading a non-existant class
+
+Build 1.7.10-7.10.52.978:
+	cpw: Fix the ItemStack transformer to find the method and field so it works with srg and mcp naming.
+
+Build 1.7.10-7.10.51.977:
+	AntonBoch12.44:
+		Build.Gradle Patch
+		
+		Changing assetDir to runDir and set runDir to "eclipse"
+
+Build 1.7.10-7.10.49.976:
+	cpw:
+		Clear button list on FML fatal error screens. The hidden cancel button should not be
+		there.
+		Closes #497
+
+Build 1.7.10-7.10.48.975:
+	bspkrs:
+		added support for \n in tooltip strings
+		added \n test tooltip localization
+		fixed int/double conversion error in slider entry
+		added test slider scenario that highlighted conversion error
+
+Build 1.7.10-7.10.46.974:
+	Christian:
+		FML now supports passing a json formatted modlist as an argument, as well as a comma separated argument list.
+		These facilitate modpacks mostly, by meaning you don't need to duplicate mods. The modlist is arranged in the
+		maven style, with mods referenced maven-like.
+
+Build 1.7.10-7.10.45.973:
+	Christian: Finally fix stupid NPE error caused by FML trying to parse the super of Object in IDEA envs.
+
+Build 1.7.10-7.10.44.972:
+	Christian: Last part is the itemstack transformer. Itemstacks should now only be loosely coupled with the items within.
+	Christian: First draft of add alias. It is probably not properly persistent atm.
+
+Build 1.7.10-7.10.42.971:
+	cpw: Update README.txt
+
+Build 1.7.10-7.10.41.970:
+	Christian: AllowPlayerLogins only after the server has completed the core init tasks. Closes #372
+	Christian: Add a constructor to CustomModLoadingDisplayException. Closes #387
+
+Build 1.7.10-7.10.39.969:
+	Christian: Kill net.minecraft.src warning. It hasn't served a purpose in a long time now. Closes #313
+
+Build 1.7.10-7.10.38.968:
+	Christian: Default collections, so that we don't crash if useDependencyInfo is true. Closes #485
+
+Build 1.7.10-7.10.37.967:
+	Christian: Tweak Itemstack patch to always delegate to the method call. Set the field, so it's in sync.
+	Christian: Fix nested directory for language resources. Closes MinecraftForge#1264
+
+Build 1.7.10-7.10.35.966:
+	Christian: Add a delegate to every item and block. this should help with renaming fun stuffs. Also, fix all the tabs from my previous commits. *sigh*
+
+Build 1.7.10-7.10.34.965:
+	Christian: Add a custom version range factory method. Should hush skyboy's complaints. Closes #486
+
+Build 1.7.10-7.10.33.964:
+	Christian: Make more noise when people screw up mod downloading and put .jar.zip in their mod folders.
+
+Build 1.7.10-7.10.32.963:
+	Christian:
+		Make LogContext optional. This can be useful for debugging mod issues, but
+		Apache's implementation in log4j2 is responsible for a very significant % of
+		the overall runtime. Quite frankly this is shockingly bad performance from
+		what is supposed to be a high performance logging framework. Anyway, until we
+		can figure out if we can fix it, we're turning it off by default.
+
+Build 1.7.10-7.10.31.962:
+	Christian: And fix the read side too, incase someone is trying to bitbang and failing.
+
+Build 1.7.10-7.10.30.961:
+	arkan:
+		Implement STDOUT/STDERR redirection.
+		
+		These streams now redirect to log4j2, with form '[class:method:line]: Original message'.
+	Christian:
+		If an IO exception comes from the datawatcher, spew it all over the console
+		don't discard it silently. Should stop pixelmon blaming forge for their mistakes.
+
+Build 1.7.10-7.10.27.960:
+	Christian: Update realms to 1.3.2
+
+Build 1.7.10-7.10.26.959:
+	Christian: Clean up a bunch of compiler warnings.
+
+Build 1.7.10-7.10.25.958:
+	cpw:
+		Sorta revert 908491d5e7ac26becdac938f38cc90d6b9d73ce1 but merge assets
+		into the map, rather than force overwriting. Fixes skyboy's comment.
+
+Build 1.7.10-7.10.24.957:
+	LexManos: Fix FMLAT manifest AccessTransformers, class loader fun! Closes #477
+	LexManos: Hacky interm solution to #475 to buy me time to re-write FML's network protocol.
+
+Build 1.7.10-7.10.22.956:
+	LexManos: Move LaunguageRegistry call above normal asset loading to allow resource packs to override mod's language systems.
+
+Build 1.7.10-7.10.21.955:
+	LexManos: Add ExitVisitor to the TerminalTransformer that finds and intercepts any calls to Runtime.exit or System.exit.
+
+Build 1.7.10-7.10.20.954:
+	cpw: Add a terminal transformer and tweaker.
+
+Build 1.7.10-7.10.19.953:
+	cpw: Don't scan ObjectHolders if there was an error already, derpitude will ensure.
+
+Build 1.7.10-7.10.18.952:
+	LexManos: Update tweaker login to use authlib.
+	LexManos: Update realms library to 1.3.1, and implement network latch when connecting to Realms. Tested and working.
+
+Build 1.7.10-7.10.16.951:
+	bspkrs:
+		added slider controls for numerics. default control is textbox, but slider can be used as a custom list entry class.
+		fixed constructor javadocs in GuiConfig
+
+Build 1.7.10-7.10.14.949:
+	LexManos: Add system property to skip doing world backups when game registry changes. This is SEVERLY ill-advised, if you do this DO NOT ask for any support.
+	LexManos: Update authlib and realms to latest json data.
+
+Build 1.7.10-7.10.12.948:
+	LexManos: Force preferIPv4Stack to true early in the load chain to combat netty loopback issues.
+
+Build 1.7.10-7.10.11.947:
+	LexManos: Scala people test your shit.
+
+Build 1.7.10-7.10.10.946:
+	AbrarSyed: updated gradle wrapper to gradle 2.0
+	LexManos: Fix unneeded cast causing crash in new Config GUI system.
+	AbrarSyed: updated run configs for GradleStart/Server classes
+	cpw: Update realms to 1.2.9
+	Nick:
+		Updated Scala to latest stable
+		
+		Updates the -dev portion of the json files for 1.7.10 for scala 2.11.1
+		Updates the -rel portion of the json files for 1.7.10 for scala 2.11.1
+
+Build 1.7.10-7.10.1.940:
+	cpw:
+		API is now able to "provide" and "own" itself. Useful for libraries without a Mod in them.
+		To go along with this, you can now require an API, with a version, in your mod dependency string
+
+Build 1.7.10-7.10.0.938:
+	Christian:
+		First draft 1.7.9 support.
+		
+		This is not modding minecraft. It's performing an update. Go away!
+	Christian: Checking in pre3 work
+	Christian: Fix up some patching bugs. Fully functional @ pre3
+	Christian: Pre4 update
+	Christian: Fix server side to write properly
+	Christian: remove the deprecation patches. The methods are gone now
+	Christian: Harden the security manager and make it less spammy. Clean up a bunch of deprecation warnings from guava.
+	cpw:
+		Force the descriptors to the right type for the field they're referencing. Fixes
+		the sand issue
+	cpw:
+		Add support for mod access transformers without a coremod requirement.
+		Use the "FMLAT" manifest attribute, with a space separate list of files
+		that live in the 'META-INF' directory. They should conform to standard AT
+		formatting.
+	cpw: Fix NPE when no FMLAT is defined
+	cpw: Fix accessing guava from transformers
+	cpw:
+		Fix library issue. mojang auth requests newer libs, so we get them at dev time. But the
+		mojang json doesn't refer them at runtime. So there's a lib mismatch. Fortunately all are
+		available at mojang, so we can update the json.
+	cpw: Update for release 1.7.10
+
+Build 1.7.10_pre4-7.9.38.937-mc179:
+	rumickon: Fix Eclipse launching attribute
+	cpw: Fix accessing guava from transformers
+	cpw:
+		Fix library issue. mojang auth requests newer libs, so we get them at dev time. But the
+		mojang json doesn't refer them at runtime. So there's a lib mismatch. Fortunately all are
+		available at mojang, so we can update the json.
+
+Build 1.7.10_pre4-7.9.34.936-mc179:
+	bspkrs: Added config GUI system
+
+Build 1.7.2-7.2.217.935:
+	bspkrs: Added config GUI system
+
+Build 1.7.10_pre4-7.9.30.934-mc179:
+	cpw: Fix up other exit points. Should stop process hangs for clean exits.
+	cpw: Fix NPE when no FMLAT is defined
+
+Build 1.7.2-7.2.214.933:
+	cpw: Fix up other exit points. Should stop process hangs for clean exits.
+
+Build 1.7.10_pre4-7.9.27.932-mc179:
+	cpw:
+		Add support for mod access transformers without a coremod requirement.
+		Use the "FMLAT" manifest attribute, with a space separate list of files
+		that live in the 'META-INF' directory. They should conform to standard AT
+		formatting.
+
+Build 1.7.10_pre4-7.9.26.931-mc179:
+	cpw:
+		Force the descriptors to the right type for the field they're referencing. Fixes
+		the sand issue
+
+Build 1.7.10_pre4-7.9.25.930-mc179:
+	Christian: Fix REPLY handling in SimpleNetworkWrapper. Closes  #440
+	Christian: Tweak bad packet warning some. Makes it a bit more log friendly.
+	Christian: Deprecate getAABBPool so people can stop using it in mods. Failure to do so will result in 1.7.10 upgrade incompatibility. Use getBoundingBox instead.
+	Christian: Also patch in warnings for Vec3Pool - similarly removed.
+	Christian:
+		FML now sets a security manager (FINALLY!). It's primary purpose at this point is to catch
+		rogue calls to System.exit so that they can cause a proper crash report, rather than
+		silently abandoning the game.
+	Christian: Fix server side to write properly
+	Christian: remove the deprecation patches. The methods are gone now
+	Christian: Harden the security manager and make it less spammy. Clean up a bunch of deprecation warnings from guava.
+
+Build 1.7.10-pre4-7.2.213.928-mc179:
+	Christian: Fix up some patching bugs. Fully functional @ pre3
+	Christian: Pre4 update
+
+Build 1.7.2-7.2.213.927:
+	Christian:
+		FML now sets a security manager (FINALLY!). It's primary purpose at this point is to catch
+		rogue calls to System.exit so that they can cause a proper crash report, rather than
+		silently abandoning the game.
+
+Build 1.7.2-7.2.212.926:
+	Christian: Also patch in warnings for Vec3Pool - similarly removed.
+
+Build 1.7.2-7.2.211.924:
+	Christian: Deprecate getAABBPool so people can stop using it in mods. Failure to do so will result in 1.7.10 upgrade incompatibility. Use getBoundingBox instead.
+
+Build 1.7.2-7.2.210.923:
+	Christian: Tweak bad packet warning some. Makes it a bit more log friendly.
+
+Build 1.7.2-7.2.209.922:
+	Christian: Fix REPLY handling in SimpleNetworkWrapper. Closes  #440
+
+Build 1.7.2-7.2.208.921:
+	Christian: Nullcheck the dispatchers on players. Should stop some crashes when spamming connectivity.
+
+Build 1.7.2-7.2.207.920:
+	Christian: Log the queue as well
+
+Build 1.7.2-7.2.206.919:
+	Christian:
+		If a packet is not handled by the channel, log it, and clear it.
+		Could be spammy, but this is a serious bug and could cause a memory leak
+		otherwise.
+
+Build 1.7.2-7.2.205.918:
+	Christian: Fix the side for the compatibility check. Should result in green ticks finally!
+
+Build 1.7.2-7.2.204.917:
+	Christian:
+		Warn when the objectholder finds nothing in the registry. Helps debug mismatched names.
+		Also, actually make the scoping thing work with objectholder
+		
+		Also handle Blocks.air as a special case. It should never be a valid block in the block registry.
+		
+		Nothing can ever replace the default block registry block. It is disabled for replacement.
+		
+		Air is properly skipped
+
+Build 1.7.2-7.2.203.916:
+	LexManos: lastIndexOf, Note Don't code while sick.
+
+Build 1.7.2-7.2.202.915:
+	LexManos: Fixed deobfusication of nested inner classes. And removed legacy ModLoader remaps.
+	LexManos: -.- Save File First. My Bad.
+
+Build 1.7.2-7.2.200.913:
+	Christian:
+		Add in the objectholder, autopopulated by FML based on simple rules. Allows
+		for reference driven substitution of mod blocks and items based on their
+		server running state.
+
+Build 1.7.2-7.2.199.912:
+	Christian: Fix the null networkHandler in the MessageContext
+
+Build 1.7.2-7.2.198.911:
+	diesieben07: Make AccessTransformer change INVOKESPECIAL to INVOKEVIRTUAL when making methods visible
+
+Build 1.7.2-7.2.196.910:
+	Christian: Swap Listenerlist constructor around. Should fix parent resizing issue?
+
+Build 1.7.2-7.2.195.909:
+	Christian: Fix up possible CME
+
+Build 1.7.2-7.2.194.908:
+	Christian:
+		Don't consider null NetworkDispatchers. This should fix a bunch of fakeplayer issues.
+		
+		Nothing to see here. No modding being done.
+
+Build 1.7.2-7.2.193.907:
+	player: Fix ObjectIntIdentityMap sporadically matching non-identical objects.
+
+Build 1.7.2-7.2.191.906:
+	Christian:
+		Finally hopefully fully kills the race condition causing a classcast
+		on slow machines.
+		
+		This is me bugfixing. NOT MODDING! No! Stop it! I'm not!
+
+Build 1.7.2-7.2.190.905:
+	Christian: Add a helper for casting some common collection types into generic form
+	Christian: Try and see if there is anything to the identityHashCode collision hypothesis. If you see this in your error messages, kindly let us know!
+
+Build 1.7.2-7.2.188.904:
+	LexManos: Fixed default network mod checking to allow client side mods without the server side. Mods wishing to REQUIRE server side components must specify a custom check handler using @NetworkCheckHandler
+	LexManos: Fix network disconnect with message on the client side in NetworkDispatcher.
+
+Build 1.7.2-7.2.186.903:
+	Christian: Ensure that the loadcontroller is ready to preinit.
+
+Build 1.7.2-7.2.185.902:
+	Christian:
+		Revert "Fix refreshResources not happening if an error occurs."
+		
+		This reverts commit fff86ee9d35874bdf77a1eaabe77615441644064.
+	Christian: Re-add removed genericiterable to clean a warning
+	Christian:
+		Split loadmods into loadmods and preinitmods, to allow resource loading to occur *always* between the two phases. This should fix
+		mods not being able to access resources during preinit.
+		
+		PS: I'm still not modding.
+	Christian:
+		Clean up some missing generic info
+		
+		PS: NOPE: still not modding.
+
+Build 1.7.2-7.2.181.901:
+	thog92: updated wrapper to gradle 1.12
+
+Build 1.7.2-7.2.179.900:
+	AbrarSyed: documented dependencies
+
+Build 1.7.2-7.2.177.899:
+	LexManos: Fine use FMLCommonHandler.
+
+Build 1.7.2-7.2.176.898:
+	LexManos: Fix potential rance condition in connecting to vanilla servers as well. And move latch into client side only.
+
+Build 1.7.2-7.2.175.897:
+	LexManos: Attempt to fix another race condition related to reading NetClientHandler.
+
+Build 1.7.2-7.2.174.896:
+	matthewprenger: Update mcmod.info
+
+Build 1.7.2-7.2.172.895:
+	LexManos: Fixed memory leak on the client caused by Netty holding references to the World. Closes #415 #417
+
+Build 1.7.2-7.2.171.894:
+	Christian: Fix mod version checking
+	Christian: Fix display of mod status at the server
+
+Build 1.7.2-7.2.169.893:
+	Christian: Clean some generic warnings up. Make a generic list handler. Helpful for others I think too.
+	Christian: Fix refreshResources not happening if an error occurs.
+
+Build 1.7.2-7.2.167.892:
+	player:
+		Fix saving backups with the raw name.
+		Fix air block not being assigned as the default.
+
+Build 1.7.2-7.2.165.891:
+	player: Fix vanilla bug causing integrated server saving from 2 threads concurrently after a crash
+	player: Registry: Fix Block-before-ItemBlock allocation when loading 1.6 world saves, more validation
+	player: prevent the world from getting saved twice at shutdown
+	player: Registry: Crash earlier with conflicting name/object registrations.
+	player: Registry: Misc tweaks
+	player: Registry: Treat all 1.6 entries as items.
+
+Build 1.7.2-7.2.159.890:
+	Christian:
+		Fix SimpleNetworkWrapper - this is not me modding,
+		I didn't realize it was broken until Pahimar told me.
+		
+		Put an example in the docs.
+
+Build 1.7.2-7.2.158.889:
+	Christian: I'm still not modding. Player has contributed greatly to the 1.7 release of FML. He needs authorship credit.
+
+Build 1.7.2-7.2.157.888:
+	Christian: I am not modding, I am fixing an annoyance. The MCP version has long since been 9.03. Also, the JSON from MC updated..
+
+Build 1.7.2-7.2.156.887:
+	player: Fix remaining issue with autoassigned Block and Item IDs overlapping.
+	player: Registry: Block IDs after failing to find a mapping for them
+	player: Fix FMLMissingMappingsEvent.get
+	player: Registry: Implement support for remapping blocks/items to a new name.
+	player: Registry: cleanup, fix missing id error GUI formatting
+	player: Fix old 1.7 worlds with broken ID mappings
+	player: Registry: allow handling missing blocks/items regardless of the mod id
+	player: initial attempt at a better way to ask the user in case of startup issues
+	player: Registry: Complain about bogus registrations
+	player:
+		Registry: Allow ignoring missing mods from the GUI, with confirm+backup
+		Registry: Add confirm+backup for automated corrupted id table fixup
+		Require the user to confirm loading from a backup level.dat
+	player: Enable custom gui rendering only as required
+	player: Remove unneeded entity spawn debug logging.
+	player:
+		Registry: Repair mismatched ItemBlocks as well
+		Fix a few misc issues
+	player: Registry: Fix debug info
+	player:
+		Registry: Complain about missing mods when repairing broken worlds
+		Registry: Reduce console spam
+	player: Registry: Protect against putObject misuse, handle duplicate registrations better
+	player: Registry: Add support for registering ItemBlocks before their Blocks
+
+Build 1.7.2-7.2.137.886:
+	LexManos: Update patches for Fixed FF in FG 1.2.
+
+Build 1.7.2-7.2.136.885:
+	AbrarSyed: updated for ForgeGradle 1.2
+	AbrarSyed: updated example a little
+	AbrarSyed: updated wrapper to gradle 1.11
+
+Build 1.7.2-7.2.132.882:
+	LexManos: Update README.txt
+
+Build 1.7.2-7.2.131.881:
+	LexManos: Fix network close events never getting called. Closes #381 #382
+
+Build 1.7.2-7.2.130.880:
+	LexManos: Fix long standing deobf issue that caused announce-player-achievements property to have no effect on dedicated servers.
+
+Build 1.7.2-7.2.129.879:
+	LexManos: Fix hard link to DedicatedSerever when opening a LAN connection causing stalls on connecting.
+
+Build 1.7.2-7.2.128.878:
+	LexManos: Re-enable post initalize texture pack reloading to allow Icons to be registerd through any init phase.
+
+Build 1.7.2-7.2.127.877:
+	LexManos: Kill the modEventTypes list, register anything that extends FMLEvent, Fixes MissingMappingEvent handler, and any future events added.
+
+Build 1.7.2-7.2.126.876:
+	LexManos: Reload game settings after mod loading is finished to capture mod keybindings. Closes #378
+
+Build 1.7.2-7.2.125.875:
+	Christian: FML expands S3F to support payloads up to 2 megs in size. Should be transparent
+
+Build 1.7.2-7.2.124.874:
+	jdroque:
+		Prevent player dat files getting reset during disconnects.
+		
+		Since FML nulls out the player's playerNetServerHandler during login, we need to
+		make sure that writePlayerData does not attempt to overwrite the player's dat file
+		if the player disconnects during the "Logging In" process.
+
+Build 1.7.2-7.2.122.873:
+	donalddani9612: Fix ExampleMod.java for build #1024+
+
+Build 1.7.2-7.2.120.872:
+	Christian: Some argumentation
+
+Build 1.7.2-7.2.119.871:
+	Christian:
+		Try and handle removal of mods a bit better. Currently no way to allow a world which has missing
+		blocks to load - but i have the code in place to allow it i think.
+	Christian:
+		Fix failing to load a world with missing mod blocks and items. There will be a way to force worlds to load
+		when stuff is missing, but for right now, it will fail as this is "world safe".
+
+Build 1.7.2-7.2.117.870:
+	jdroque:
+		Prevent players from logging in until server has finished starting.
+		
+		This improves server security as it guarantees no players will be
+		allowed to connect until the server has fully initialized.
+
+Build 1.7.2-7.2.116.869:
+	LexManos: Fix isRemote, this is integral to so many parts of the code, everyone knows it by this name, People should not change it.
+
+Build 1.7.2-7.2.115.868:
+	LexManos: Update MCP mapping snapshot to latest crowdsourced names.
+
+Build 1.7.2-7.2.114.867:
+	Christian: Clean up FMLEventChannel. Closes #367.
+
+Build 1.7.2-7.2.113.866:
+	LexManos: Fix obf error when right clicking a Empty Map.
+
+Build 1.7.2-7.2.112.865:
+	Christian:
+		Tweak so that writing to the context will automatically send a message back to
+		the originator in handshakeestablished.
+
+Build 1.7.2-7.2.111.864:
+	LexManos: Bump gradle wrapper to 1.10
+	Christian: Ensure we check both item and block registries when finding valid IDs. Should fix #365
+
+Build 1.7.2-7.2.109.863:
+	Christian: Try harder to find a mod container.
+	Christian:
+		And make a loud message if there isn't a modcontainer found, substitute Minecraft. In general, this can only happen
+		for coremods not properly registering their code. Closes #363
+
+Build 1.7.2-7.2.107.862:
+	Christian: Beginning of a saveinspectionhandler.
+
+Build 1.7.2-7.2.106.861:
+	Christian: And don't spam NONE everywhere
+	Christian: Log4j2 doesn't need debug level logging for itself anymore
+
+Build 1.7.2-7.2.104.860:
+	Christian: Log4j2 logging context for things. This should help add context when things go wrong in mods.
+
+Build 1.7.2-7.2.103.859:
+	Christian: Name the log files properly. fml-junk is an early startup annoyance I can't kill because log4j2.
+
+Build 1.7.2-7.2.102.858:
+	Christian: Log the bad packet in a prettier way. Also, don't show the authlib debug data in the log file.
+
+Build 1.7.2-7.2.101.857:
+	Christian: Add in error logging for outbound messages. Fix bug with indexedcodec NPE
+	Christian: Fix derp with networkcheck
+	Christian: And turn down some more logging, now we have useful logging back again..
+
+Build 1.7.2-7.2.98.856:
+	Christian: Fix log4j2 config. Fix server gui to *show* logging. Fix log spamminess in the console. Fix bug in servergui that can cause deadlock.
+
+Build 1.7.2-7.2.97.855:
+	Christian:
+		Fix reply handling. Make the proxy message available for subclasses of indexedcodec. Fire user events into the network
+		event firing.
+
+Build 1.7.2-7.2.96.854:
+	Christian: Clean up and document outbound handler a bit better. Add in dispatcher target. Closes #361
+
+Build 1.7.2-7.2.95.853:
+	Christian: Add in example assets dir. Closes #308
+
+Build 1.7.2-7.2.94.852:
+	rainwarrior: Propagate Optional method removal to trait implementation classes
+
+Build 1.7.2-7.2.92.851:
+	AbrarSyed: Logging Changes
+	sacabrarsyed: changed fml log level to all
+	sacabrarsyed: put max number of FML log files to 3
+	Christian: And restore suppressions. ABRAR, DON'T TIDY CODE!!!!
+
+Build 1.7.2-7.2.87.850:
+	Christian: Make sidedproxy support non-public fields. Closes #344
+
+Build 1.7.2-7.2.86.849:
+	Christian: Try and stop the epic channel closed spam at close time. Closes #353
+
+Build 1.7.2-7.2.85.848:
+	Christian: findBlock should now return null, not the default block, if the thing being looked for is not found. Closes #352
+
+Build 1.7.2-7.2.84.847:
+	Christian: Allow connection when server is apparently offline. Might allow :NOFML circumvention though. Hmmm. Closes #359
+
+Build 1.7.2-7.2.83.846:
+	Christian: Check the mod, not it's container, in the check handler. Closes #358
+
+Build 1.7.2-7.2.82.845:
+	Christian:
+		Allow indexed messages to validate themselves. Also, catch exceptions from
+		an embedded channel, and cause them to close the connection. It's ugly, but
+		it means that the client doesn't crash if it connects to a screwy bungycord that's trying a 1.6 handshake for some reason.
+
+Build 1.7.2-7.2.81.844:
+	Christian: Add a type adapter for artifact version. Should fix #354
+
+Build 1.7.2-7.2.80.843:
+	jk-5: Throw an exception when discriminator is not found
+
+Build 1.7.2-7.2.78.842:
+	jk-5:
+		Make NetworkEventFiringHandler sharable
+		
+		Fixes #356
+
+Build 1.7.2-7.2.76.841:
+	Christian:
+		SSP Worlds updating from 1.6 will now pop a warning message before loading, and will capture a timestamped
+		zip file in the minecraft dir before starting to load. Allows for people to test updates.
+
+Build 1.7.2-7.2.75.840:
+	LexManos: Move placement of single player world load hook to fix NPEs.
+
+Build 1.7.2-7.2.74.839:
+	Christian: Fix NPE at startup
+	Christian: Fix memory leak?!
+
+Build 1.7.2-7.2.72.838:
+	Christian: Clean up some warnings about @Override
+
+Build 1.7.2-7.2.71.837:
+	Christian:
+		Make UniqueIdentifier final and add a hashCode. Closes #348
+		
+		Clean up language registry. It can be used to access all translations of mods on client or server.
+		Auto loads from assets files.
+
+Build 1.7.2-7.2.70.836:
+	Christian: Put logging exception handlers on all channel inbounds. Fix problem with failure to login. Closes #350
+
+Build 1.7.2-7.2.69.835:
+	Christian:
+		Fire a custom packet channel registration/deregistration event, for any mods that care about that
+		kind of thing
+
+Build 1.7.2-7.2.68.834:
+	Christian: Some fixes and tweaks
+	Christian: Clean up some warnings. Add in simple network impl
+	Christian: Add in some tests and examples for the "simple" network stuff
+	Christian: Fix bug with SSP, and hook so we can do confirmation of world loading, as well as other things
+
+Build 1.7.2-7.2.63.833:
+	Christian: Fix bukkit connectivity issue.
+
+Build 1.7.2-7.2.62.832:
+	LexManos: Added basic Mojang account authentication support for development time login.
+
+Build 1.7.2-7.2.61.831:
+	jezzadabomb: At the request of AbrarSyed.
+
+Build 1.7.2-7.2.59.830:
+	Christian: Fix possible NPE derp
+	Christian: Divert connection through FML, so we can deny connections to servers that don't want us
+
+Build 1.7.2-7.2.57.829:
+	Christian: Fix up privacy derp in TickEvent. Closes #343
+
+Build 1.7.2-7.2.56.828:
+	Christian: Fix openGui. Closes #342
+
+Build 1.7.2-7.2.55.827:
+	Christian:
+		Add in a simple(ish) event driven network handling system. Register using newEventDrivenChannel
+		and you'll get a simple network handler that will fire events at the subscriber(s) of your
+		choice, whenever a packet is received. You'll also get some convenience methods for sending
+		to things.
+
+Build 1.7.2-7.2.54.826:
+	Christian: Fix potential ordering issue, clean up some imports
+
+Build 1.7.2-7.2.53.825:
+	Christian: Fix the keybinding array to the right one
+	Christian: Fix TargetPoint to be static
+	jake: added override toString method for getting full name.
+	jake: changed the readme to reflect new setup task.
+	jake: undid readme change
+	Christian: Fix csv string vs list of strings. Thanks immibis. Closes #334
+
+Build 1.7.2-7.2.46.820:
+	Christian:
+		Fix problem with connecting to vanilla.
+		SHOW what's modded and what's vanilla in the list. Hooks that make the blocking work to come
+
+Build 1.7.2-7.2.45.819:
+	LexManos: Mark jopt needed on the server, herp derp, blame Abrar!
+
+Build 1.7.2-7.2.44.818:
+	Christian: Fix stupid hardcoding derp
+
+Build 1.7.2-7.2.43.817:
+	Christian: Add a utility method for finding the channel handler name based on type. Should fix naming weirdnesses.
+
+Build 1.7.2-7.2.42.816:
+	Christian: Added transparent background for GuiIngameModOptions as per cpw's request. May not compile due to manual de-mcp-fication.
+	Christian: Fix up readmes and credits. We no longer support modloader.
+	Christian: Tweaks
+	Joe Amenta: Avoiding redundant calls to LogManager
+	Christian: Fix up mcpname derp in GuiScrollingList.
+
+Build 1.7.2-7.2.36.813:
+	Christian: Config GUIs in the modlist now work.
+
+Build 1.7.2-7.2.35.812:
+	ohai.iChun: Fix button size for GuiModList
+	Christian: Tweak button positions.
+
+Build 1.7.2-7.2.33.811:
+	Christian: Starting work on the actual GUI. Still work to do. Needs an API.
+
+Build 1.7.2-7.2.32.810:
+	Christian: Fix derpiness with Mods button when Realms is available
+
+Build 1.7.2-7.2.31.809:
+	Christian: Lots of network cleanup. Gui packets now work too!
+
+Build 1.7.2-7.2.30.808:
+	Christian:
+		Expose the nethandler in a few places, and pull out FMLEmbeddedChannel, exposing a utility method on it.
+		More to come.
+
+Build 1.7.2-7.2.29.807:
+	Christian: Add in the tweakclass, fix the json for lzma @ the server.
+
+Build 1.7.2-7.2.28.806:
+	Christian: Allow itemstacks for furnace recipe inputs. Allow passing extra arguments through registerblock into the itemblock constructor.
+
+Build 1.7.2-7.2.27.805:
+	Christian: Fire simple network connect/disconnect gameevents.
+
+Build 1.7.2-7.2.26.804:
+	Christian: Fix example mod code for 1.7
+
+Build 1.7.2-7.2.25.803:
+	Christian: Make gradlew executable on linux
+	Christian: Attempt to load old pre-1.7 worlds. ENSURE YOU HAVE A BACKUP!
+
+Build 1.7.2-7.2.23.802:
+	Christian: Fix handling world reloads when new stuffs are added
+	Christian: Update render registry
+	Christian: AT for renderblocks
+
+Build 1.7.2-7.2.20.799:
+	LexManos: Add 1.7.2 base json, Gradle will automatically download updated versions of this. Keeping it in the repo allows us to see what base json we have built our jsons off of. And if it changes update accordingly.
+
+Build 1.7.2-7.2.19.798:
+	Christian:
+		Fix handshaking properly. Also, fix ID syncup. It now will completely freeze the idmap after preinit.
+		This frozen map is used to inject "new" stuff into existing serverside worlds. Interesting sideeffect: remote
+		servers lacking things will change the client, to also LACK ids for those things. watch for -1 ids in your remap
+		events. Note: idmaps should be considered temporary per server instance. SERVERSTOPPED will restore "startup" state,
+		as will client logout.
+
+Build 1.7.2-..794.794:
+	Christian: Step 1: The Purge
+	Christian: Step 2: The Reformation
+	Christian: Step 3: The Rebirth
+	Christian: Publish to repo folder for local testing.
+	Christian: Add gradle wrapper
+	Christian: Include eclipse template workspace, for packaging in src distro.
+	Christian: Move to install to not clutter root directory with the .bat and .sh files I know are coming.
+	Christian: added src distribution gradle file
+	Christian: Fix license and naming
+	Christian: Change the build to capture an MCP version, also, tweak the sources so mavenLocal can be used for ForgeGradle
+	sacabrarsyed: Update 1.6.4-rel.json
+	LexManos: Join the developers list in the pom and fix the client run configs in the workspace.
+	Christian: First pass : kill modloader, clean up warnings
+	Christian: Deprecation cleanup. Bye bye more modloader stuffs
+	Christian: Remove all public all the time from Minecraft. It is unnecessary with ModLoader gone. DEAL WITH IT. File AT public requests, make a coremod, whatever. This needed to die.
+	Christian: Kill more references to modloader.
+	pahimar: Add in null protection for client/server sides of handleChat
+	Christian: Don't try and open GUIs on the server.
+	Christian: Way to go, missing import. *sigh*
+	Christian: Actually do it correctly. Should be more forge friendly now.
+	AbrarSyed: updated samples
+	LexManos: Make the working directory the root of the eclipse workspace.
+	LexManos: Don't validate signatures in dev env.
+	sacabrarsyed: fix derp in example builscript
+	Christian:
+		Pass 1: Most patches are restored.
+		
+		NOTES: 1. Network is completely broken. 2. GameRegistry is partially broken. 3. ID sync is not in.
+	Christian: Update gitignore
+	Christian: The basic network handshaking for FML is done. All scenarios seem to work.
+	Christian:
+		A network design I like. It uses the netty embedded channel to allow mods to build channel pipelines on top of
+		custom payload packets.
+	Christian: Check in patches. Add in some network timeout tweaking values so you can debug the network.
+	Christian: More cleanup. Bidirectional server <-> client network works for mods as well as FML|HS now.
+	Christian:
+		OK, network channels appear to be working well for both dedi and integrated servers.
+		The beginnings of the new mod structure too.
+	Christian: More network stuff, partially done id syncing.
+	Christian: ID loading from the server save now works.
+	LexManos: Add sonatype snapshots repo for SpecialSource snapshots.
+	LexManos: Add mappings for Items/Blocks fields.
+	LexManos: Update for fixed Enum cleaning and names.
+	LexManos: Did it manually, forgot it needed the end comma
+	Christian: ID syncing.
+	Christian: Cleanups
+	Christian: Add in a remapping event for mods to consume.
+	Christian: Fixed remote and local connections work with mods now.
+	Christian: Entity spawning works.
+	Christian: SpawnAdjustment packet. Clean up stuffs. No more compile errors.
+	Christian: Fix stupid possible compiler error.
+	Christian: Fix the exc file. Fix the deobfremapper for handling inner classes.
+	Christian: Fix exc this time *sigh*
+	Christian: Clean up patches for latest exc.
+	LexManos: Kill old patches and add rejects to ignore file.
+	Christian: Fix AT, Fix exc. Almost works now!
+	Christian: First functional release under reobfuscation.
+	sacabrarsyed: Update shiped ForgeGradle for 1.7
+	LexManos: Rename synthetic bridge methods, these methods are not decompiled, but need to reobf correctly cross the recompile boundary.
+	Christian: Some patching touchups
+	Christian: Update for log4j2
+	Christian: Copy eventhandler from Forge into FML. It is going to replace a lot of the runtime event systems.
+	Christian: Patch some GUIs. We're gonna add some basic mod gui config support.
+	Christian: Fire a user event down the channels when a handshake has occured.
+	Christian: Ticks, Player events, keybindings, all migrated to the new event driven system.
+	Christian: Code to disable mods at runtime, or other times.
+	Christian: ICraftingHandler, IPickupHandler are now both events.
+	Christian: IWorldGenerator now has an ordering at registration time. This means the order of worldgen should be much more stable.
+	LexManos: Update patches for Gradle's rename rewrite: MinecraftForge/ForgeGradle@19e7acf2a27a6c6ae60f6e8ab38337defddc16d3
+	Christian: Working on id missing handling
+	Christian: More tweaking on id stuffs at worldload
+	Christian: bump to legacy launcher 1.9 with logging unification stuffs.
+	LexManos: Add new required --accessToken to launch specs.
+	Christian: Fix build script
+
+Build 6.4.41 (master):
+	Christian:
+		Add in the ability to strip interface references for specific interfaces - this is probably mostly useful for
+		scala scenarios where sythetic methods are generated and is not a substitute for using Optional.Method where appropriate.
+		Closes #300
+
+Build 6.4.40 (master):
+	Christian: Change a couple of warnings, as a prelude to 1.7- preinit is now required for all GameRegistry activity, and every item and block REQUIRES registration.
+
+Build 6.4.39 (master):
+	Christian: Fix derp with custom properties. They work now!
+
+Build 6.4.38 (master):
+	Christian: Fix recursive API dependency resolution. Allows nested APIs, such as BuildCraft's
+
+Build 6.4.37 (master):
+	Christian: Fix up duplicate entries
+
+Build 6.4.36 (master):
+	Christian: Attempt to inject coremods as tweakers, so both can share a dependency ordering
+	Christian:
+		Add in an API marker for API type packages.
+		This does several things:
+		1. Packages marked as API will generate a new "modid" (the provides) that can be depended on.
+		2. Packages marked as API will be searched systemwide, and anything declaring that package (even without the API marker)
+		will get an implicit dependency on the API package.
+		3. The API package itself will get a soft dependency on the "owner" package.
+		
+		@Optional elements can refer to the API packages instead of a concrete mod as well.
+
+Build 6.4.34 (master):
+	Christian: Wrapping coremods as tweakers. Part 1.
+
+Build 6.4.33 (master):
+	Christian:
+		Modify ordering of networkmod registration and mod instantiation. This fixes VersionCheckHandler logging an incorrect failure message due
+		to NPE.
+	Christian: Fix up documentation of VersionCheckHandler - it only ever accepted a String and only works on the NetworkMod annotated class
+
+Build 6.4.31 (master):
+	LexManos: Make each mod's EventBus log a child of it's main logger.
+
+Build 6.4.30 (master):
+	Christian: Fix up handling the new method signature data for NetworkCheckHandlers
+
+Build 6.4.29 (master):
+	Christian: Use null to empty, so missing values work. *sigh*
+
+Build 6.4.28 (master):
+	Christian:
+		Primitive capability for tweakers to order. Add a "TweakOrder" integer
+		property to your manifest, or accept the default of zero.
+
+Build 6.4.27 (master):
+	kevin.ji:
+		Very minor style fixes
+		
+		Replacing tabs with spaces consistently, making brace styles consistent, etc.
+
+Build 6.4.25 (master):
+	Christian: Support, and fix up, interface lists for Optional
+
+Build 6.4.24 (master):
+	LexManos: Delay sound system backend initalization to speed up startup and prevent race condition on some computers.
+
+Build 6.4.23 (master):
+	Christian: Optional shouldn't be constructable itself. It's purely a wrapper thing.
+	Christian: ModLoader is officially deprecated. It will all cease to be with 1.7.
+
+Build 6.4.21 (master):
+	Christian: Add in support for Optional interfaces and methods. Be gone coremods!
+
+Build 6.4.20 (master):
+	Christian: Fix null killing the server
+
+Build 6.4.19 (master):
+	LexManos: Fix md5s for new checksums.sha1 in scala libraries.
+
+Build 6.4.18 (master):
+	Christian: Attempt at a shared modlist implementation - should allow visibility between liteloader and fml for "mod list display"
+
+Build 6.4.17 (master):
+	Christian: Cross-modsystem compatibility fix with thanks to Mumfrey @ liteloader
+
+Build 6.4.16 (master):
+	Christian: Add to both the classloader and the parent
+
+Build 6.4.15 (master):
+	Christian: Fix deobf tweaker
+
+Build 6.4.14 (master):
+	Christian: TYPOS!!!
+
+Build 6.4.13 (master):
+	Christian:
+		Separate deobf tweaker so it runs last. Should fix problems with cascaded tweakers
+		expecting an obf environment.
+
+Build 6.4.12 (master):
+	Christian:
+		Add debugging for deobfuscation
+		
+		Add negative caching for field and method maps. Should shortcut some work
+		
+		Fix handling the case where a class doesn't exist, but still needs deobf
+		
+		Ask the patch manager for the bytes for the class, not the classLoader
+		
+		Fix up some more places where we should look for a patched class
+		
+		Fix problem with empty source classes and runtime deobfuscation
+	Christian: Use the negative cache in latest legacylauncher.
+	Christian: Update for launchwrapper 1.8
+
+Build 6.4.9 (master):
+	LexManos: Update to new installer that uses xz compression and better support for non-standard jvms
+
+Build 6.4.8 (master):
+	Christian: And use the parent that's actually going to be valid. *sigh*
+
+Build 6.4.7 (master):
+	Christian: Herpaderp. Make addURL accessible. *sigh*
+
+Build 6.4.6 (master):
+	Christian: Fix injection of tweaker into system
+
+Build 6.4.5 (master):
+	smcv-mcmod:
+		Fix NPE when loading second single-player world
+		
+		After leaving a single-player world, getServer() can return null, resulting
+		in the stack trace below, "Fatal errors were detected during the
+		transition from SERVER_STOPPING to SERVER_ABOUT_TO_START",
+		"The ForgeModLoader state engine has become corrupted" and the client
+		getting stuck forever.
+		
+		Exception in thread "Server thread" java.lang.NullPointerException
+		at cpw.mods.fml.client.FMLClientHandler.serverStopped(FMLClientHandler.java:620)
+		at cpw.mods.fml.common.FMLCommonHandler.handleServerStopped(FMLCommonHandler.java:468)
+		at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:471)
+		at net.minecraft.server.ThreadMinecraftServer.run(SourceFile:583)
+
+Build 6.4.3 (master):
+	Christian: Fix classpath for launchwrapper 1.7
+
+Build 6.4.2 (master):
+	Christian: Update workspaces for 1.6.4
+
+Build 6.4.1 (master):
+	Christian: Fix up a deep crash in the early server init hanging the client
+
+Build 6.4.0 (master):
+	Christian: Update for MC 1.6.4
+
+Build 6.3.4 (master):
+	LexManos: Make final transformers actually work on methods as well.
+
+Build 6.3.3 (master):
+	Christian: Format the log messages through MessageFormat. Thanks CovertJaguar for the pointer. Closes #282
+
+Build 6.3.2 (master):
+	LexManos: Update the src distro's eclipse workspace.
+
+Build 6.3.1 (master):
+	Christian: Update tweaker for new Launcher API
+	Christian: Update for pre-ninja 1.6.3 update
+	Christian: Update for real 1.6.3 update
+	Christian: Update mcp mod info
+	Christian: Update mc_versions data and commands patch and eclipse workspace
+
+Build 6.2.63 (master):
+	Christian: Update for new installer and thank you.
+
+Build 6.2.62 (master):
+	Christian: Add in support for using a mirror list and provide checksums for packed download of libs
+
+Build 6.2.61 (master):
+	Christian: Fix sidedness derp in LanguageRegistry.
+
+Build 6.2.60 (master):
+	Christian: Remove @SideOnly from 70318 (getDistance) it makes no sense that it's not on the server.
+	Christian: Update MCP data
+
+Build 6.2.58 (master):
+	Christian: Use java 1.6 compatible method of closing the zip file. Stops stupid compile error.
+
+Build 6.2.57 (master):
+	Christian: Allow coremods to properly inject asset readers.
+	Christian: Allow server side lang file injection, hopefully
+
+Build 6.2.55 (master):
+	Christian: More exception handling for less derpiness.
+
+Build 6.2.54 (master):
+	Christian: Try and use the relaunch log, which should be classloaded..
+	Christian:
+		Reset the IWorldGenerator seed for each mod, before calling. That should mean worldgen is consistent
+		and not dependent on mod ordering, or mod sideeffects.
+
+Build 6.2.52 (master):
+	Christian: Fix up scala refs, for better results
+
+Build 6.2.51 (master):
+	Christian: Check keys, not values *sigh*
+
+Build 6.2.50 (master):
+	Christian: And more coremod logging
+
+Build 6.2.49 (master):
+	Christian: Add in some log information
+
+Build 6.2.48 (master):
+	Christian: And actually instantiate the collection *sigh*
+
+Build 6.2.47 (master):
+	Christian:
+		Add in "FMLCorePluginContainsMod" in the manifest. If this value is
+		present, FML will attempt to parse your mod jar file as a normal mod
+		file as well, instantiating mod containers there.
+
+Build 6.2.46 (master):
+	Christian:
+		Clean up a couple of resources. Also, don't parse jars just because
+		they're in the mods dir
+
+Build 6.2.45 (master):
+	Christian:
+		Make sure we only add args to the argument list if a tweaker hasn't already.
+		Should fix LiteLoader compatibility issue.
+
+Build 6.2.44 (master):
+	Christian: Fix stupid derp is stupid. Closes #275 and means sp614x can do his thing
+
+Build 6.2.43 (master):
+	LexManos: Update installer.
+
+Build 6.2.42 (master):
+	bo: Fixed install.sh not passing arguments to install.py
+
+Build 6.2.40 (master):
+	i:
+		Add missing SideOnly in BaseMod
+		
+		NetClientHandler exists only on client side and thus method using it should be annotated with SideOnly.
+
+Build 6.2.38 (master):
+	cpw: Add in some reverse lookup methods for game registry data
+
+Build 6.2.37 (master):
+	cpw:
+		Temporarily add a version of 'reobfuscate.py' that will resolve complex
+		reobfuscation graph issues with specialsource. Copy it over 'reobfuscate.py'
+		in the mcp runtime dir. Hopefully will have an MCP/specialsource fix in
+		the coming days.
+
+Build 6.2.36 (master):
+	cpw: Fix keybindings being derped
+
+Build 6.2.35 (master):
+	LexManos: Use json 2.9.1 nightly for OSX in release json like vanilla does.
+
+Build 6.2.34 (master):
+	LexManos: Stupid spaces and windows escaping -.-
+
+Build 6.2.33 (master):
+	LexManos: Add quotes for paths with spaces -.-
+
+Build 6.2.32 (master):
+	LexManos: Use a temporary file for recompile's command line to combat command length to long issues.
+
+Build 6.2.31 (master):
+	LexManos: Fix potential NPE in villager skin registry.
+
+Build 6.2.30 (master):
+	LexManos: Fix server launching.
+
+Build 6.2.29 (master):
+	Christian: Fix logo handling. no more NPE if the logo can't be found. Also, fix location of mcp logo now.
+
+Build 6.2.28 (master):
+	Christian: Fix up jar sanity check code. FML validation of the jar works now and doesn't derp classloading.
+
+Build 6.2.27 (master):
+	Christian:
+		Force a global asset scan prior to mod construction : you should be able to
+		reference assets anywhere in your mod now.
+	Christian:
+		Fix up logos in the mod screen. Clean up some unnecessary casts and suppressions, use the -debug asm
+		library at dev time, since it contains full symbols and code in compiled form.
+	LexManos: Kill mcp's truncate method, for more useful logs.
+	LexManos: Kill release time scala libraries, to be re-evaluated after all movement is done and shit is fixed. May require manual instalation for mods that use scala.
+	Christian:
+		Coremods now have a primitive dependency capability. Also, we search mods dir for special
+		"TweakClass" manifests. These are using the vanilla tweak mechanism to inject into
+		Minecraft. Helpful for other "platform" systems, when you don't want to have to deal
+		with json changes!
+	LexManos: Update build and eclipse workspaces for debug asm.
+	LexManos: Update Forge signature for new private key
+	Christian:
+		The server.classpath generates the runtime manifest, so it needs the
+		non-debug asm jars.
+
+Build 6.2.19 (master):
+	Christian: Update FML for new stealth update for 1.6.2
+
+Build 6.2.18 (master):
+	captain_shadows:
+		@InstanceFactory was set to look for Fields instead of methods
+		
+		"fix it" to now match the javadoc :P
+		
+		if it was set like that so modders wouldn't use it, it might be better to just say so in the documentation
+
+Build 6.2.16 (master):
+	LexManos: Disable signature check of client for now, it's broken.
+	Christian: Decode the file URL. Hopefully will make things work more..
+	Christian: And don't forget to remove the test code
+
+Build 6.2.13 (master):
+	LexManos: Add MC Version to installed version name.
+	LexManos: Don't validate signatures on servers, they are not signed.
+	LexManos: Temporarily disable GuiModList's Mod logos.
+
+Build 6.2.10 (master):
+	LexManos: Fix NPE in new debug line when patch targets don't exist.
+
+Build 6.2.9 (master):
+	Christian: Don't initialize the server.
+
+Build 6.2.8 (master):
+	Christian:
+		FML now verifies that the minecraft jar is correct and intact. This is intended to discourage those who think that
+		modifying the minecraft jar is still acceptable.
+
+Build 6.2.7 (master):
+	Christian: Test server-siding ResourceLocation
+
+Build 6.2.6 (master):
+	Christian: The game is going to exit in face of patch mismatch, unless you force it to run with fml.ignorePatchDiscrepancies in the system properties.
+
+Build 6.2.5 (master):
+	LexManos: Update eclipse workspaces for 1.6.2
+	Christian: Tweak debug data on patched classes
+	Christian:
+		We now generate an adler32 checksum for each patched file and verify at load time that they match.
+		Mismatch won't crash, but will emit a big warning..
+	Christian: Update for stealth update. Thanks mojang!
+
+Build 6.2.1 (master):
+	Christian: Update for 1.6.2 and MCP 8.04
+	Christian: Add the jsons for 1.6.2
+
+Build 6.1.39 (master):
+	Christian:
+		Add cascadedTweaks. This will allow simple coexistence for any other mod framework using
+		the tweaker system as well. Hi Voxel and LiteLoader!
+
+Build 6.1.38 (master):
+	jeffreykog: Update ModLoaderFuelHelper.java
+
+Build 6.1.36 (master):
+	Christian: Update mcp data. fixes #248
+
+Build 6.1.35 (master):
+	Christian: Fix coremod injection into main system. Should stop double-dipping coremods.
+
+Build 6.1.34 (master):
+	LexManos: Move Resource refreshing until affter postInit.
+
+Build 6.1.33 (master):
+	LexManos: Fix missing argument and startclient/startserver support.
+
+Build 6.1.32 (master):
+	LexManos: Add deobf-data to setup env.
+	LexManos: Fix eclipse workspaces and launch configurations.
+	LexManos: Update to new MCP bugfix version, Fixes: Missing Armor/Item rendering, and Boss health mapping issues.
+
+Build 6.1.29 (master):
+	Christian:
+		Fix up some deprecation warnings, and clean up coremod code that's going
+		away.
+	Christian: More javadoc cleanup
+	Christian: Add in support for mods/<mcversion> as a mod location. Also drop coremods as a location. They go in mods too now.
+	Christian: Update key
+
+Build 6.1.25 (master):
+	Christian:
+		Revert "Keep these on our servers until the launcher is actually fixed -.-"
+		
+		This reverts commit f1b533ad87ea08d6e62259c59779bcec1636e2fe.
+
+Build 6.1.24 (master):
+	jrtc27: Fixed ClassCastException when loading ModLoader mods
+	Christian: Fix transformer search
+
+Build 6.1.21 (master):
+	Christian:
+		Resource packs, part two. FML mods are now resource packs. Vanilla will scan anything under 'assets'
+		and turn it into a resource prefix. Use resourcelocations to look stuff up.
+
+Build 6.1.20 (master):
+	LexManos: Keep these on our servers until the launcher is actually fixed -.-
+
+Build 6.1.19 (master):
+	Christian:
+		Mods are now loaded as resource packs. Vanilla will scan for valid prefixes based on subdirs of 'assets' which
+		can then be referenced as ResourceLocations with the "<prefix>:path" notation.
+	Christian: Remember to update your patches!!!!
+
+Build 6.1.17 (master):
+	Christian: Fix EventHandler annotation.
+
+Build 6.1.16 (master):
+	LexManos: Point scala downloads to our servers, Launcher doesn't like standard maven repos.
+	Christian: Fix -rel json
+
+Build 6.1.14 (master):
+	Christian: Update json samples
+	Christian: Fix up release JSON
+	LexManos: Fix json syntax error.
+
+Build 6.1.11 (master):
+	LexManos: Add FML Installer logo crated by @ZaverSLO https://twitter.com/ZaverSLO/status/349947190300508162
+	LexManos: Build installer package for the new client launcher.
+
+Build 6.1.9 (master):
+	LexManos: Revert common folder fix, Common folder does nothing, feel free to delete it after first load.
+
+Build 6.1.8 (master):
+	LexManos: Fix src distrabution, and got rid of pesky common folder in eclipse workspace. src is now installable.
+
+Build 6.1.7 (master):
+	LexManos:
+		Upgraded minecraft downloader to work with new launcher's asset/library system
+		New parameter:
+		  --no-assets: Disables the downloading of minecraft's asset tree, recomended that build servers supply this flag to prevent downloading of useless data.
+	LexManos: Add filter support for MCPMerger, and filter out libraries from the server's 'fat jar'.
+	Christian: Ignore binpatch
+	Christian: Fixes, so it builds again..
+	Christian: Changed to the EventHandler annotation universally, documentation and stuff.
+	Christian: First cut of runtime binary patching. Needs some work to actually test it in a real scenario..
+	Christian: Server side tested and working. Setup is complex atm. That will change.
+	Christian: More tweaks
+	Christian: Merge in binpatch and use launcher
+	Christian: More fixups for new launcher model
+	Christian: Fix build script. Add a sample JSON file. You'll need the newest Launcher code to run this.
+	Christian: No more debug please
+	LexManos:
+		Upgraded minecraft downloader to work with new launcher's asset/library system
+		New parameter:
+		  --no-assets: Disables the downloading of minecraft's asset tree, recomended that build servers supply this flag to prevent downloading of useless data.
+	LexManos: Add filter support for MCPMerger, and filter out libraries from the server's 'fat jar'.
+	Christian: Ignore binpatch
+	Christian: Fixes, so it builds again..
+	Christian: Changed to the EventHandler annotation universally, documentation and stuff.
+	Christian: Add a simple property annotation system for mods.
+	LexManos:
+		Re-wrote/orginized a lot of fml.py. Almost everything is re-written/moved.
+		This is done in preperation for MCP to roll out SpecialSource support and the new 1.6 structure.
+		Also done for my sanity while reading through the code.
+		
+		Intruduced a new function. If there is a 'mcp_data' folder in the FML folder, it will be copied to the MCP work directory after MCP is extracted.
+		It DOES overwrite anything that already exists.
+		This is intended for places like BuildServer to place libraries/assets to prevent them from needing to be downloaded every version.
+		
+		Introduced a dev-env json. Need to write the eclipse workspace references to the new libraries.
+		Out custom json includes asm and legacylauncher.
+		
+		Added proper OptionParsing to decompile.py
+	LexManos: Add missing argument
+	LexManos: Fixed update_packages.py for new folder strcture.
+	LexManos: Add suggestions output if it can.
+	LexManos: Update eclipse projects for new libraries dependancies, and update packages for new 1.6 classes.
+	LexManos: Add Clean Server/Client launcher. Update Start.java to new Main class and login system.
+	LexManos: Base GenDiff off deobf data's class list instead of the merged jar. Add option to delete target files that generate patches.
+	LexManos:
+		Add support for alternative maven servers in libraries.
+		Also download sources for public libraries, and atach them in eclipse. DOCUMENTATION!! YAYA!
+	Christian: Tweak missing mapping
+	Christian: New mappings for marker
+	Christian: First draft of 1.6 update
+	Christian: More fixes, binpatching works
+	LexManos: Push conf folder for 1.6, Relied heavily on a yet-unreleased version of MCP.
+	LexManos: Fix typo in new packages.
+	LexManos: Another typo
+	Christian: More fixups
+	Christian: Some fixes for updated mcp code
+	Christian: 1.6.1
+	Christian: Tweak commands patch
+	Christian: Functional client @ 1.6.1
+	Christian: Client launch for eclipse
+	LexManos:
+		Add windows lzma executable
+		http://tukaani.org/xz/
+		He states that most things are under public domain, But I couldn't find an exact reference to this executable.
+		I'm going to assume it under public domain and distribuiting it here is fine. If not someone please direct me to the apropriate license and I will act accordingly.
+	LexManos: Fix wrong project name in distro eclipse launch.
+	LexManos:
+		Add deobf data to src dist.
+		Dont create deobf jar as we ship the lzma
+		Added *.lzma to .gitignore
+	LexManos: Add deobf data to merge-common, worspace is now actually runnable!
+	Christian: Cleanup coremod code, server side working now.
+	Christian: Update mcp URL.
+
+Build 5.2.28 (binpatching):
+	LexManos: Move down Forge's EventBus to FML, More efficient and faster then Guava's.
+	LexManos: Stop using guava's EventBus and use Forge's.
+
+Build 5.2.26 (binpatching):
+	Christian: No more debug please
+	Christian: Server side tested and working. Setup is complex atm. That will change.
+	LexManos: Depercate annotation specific Mod init system. Use standard EventBus annotation, this is MUCH smpler and straight forward. Durasticlly decreases the complexity of the FML Mod class design.
+
+Build 5.2.23 (master):
+	Christian: Attempt to properly fix deadlock if the internal server derps. It should never hang now. Damn you fast computer..
+	Christian: Small tweaks to the mcp data. Nothing major..
+
+Build 5.2.21 (master):
+	Christian:
+		Add in an optional modid identifier for @SidedProxy. It's main use is when both scala and java @Mods reside in the
+		same package, and you want the @SidedProxy behaviour for a specific @Mod language type. In general it should not be needed otherwise.
+	Christian: Fix sysout with trailing messages after a newline
+
+Build 5.2.19 (master):
+	Christian: Don't continue trying to send events to mods that depend on errored mods.
+
+Build 5.2.18 (master):
+	Christian: Don't throw an exception if the scala adapter find a java proxy. I may add some distinguishers to @SidedProxy so you know which mod it's for.
+
+Build 5.2.17 (master):
+	Christian: Send the "suspect list", and print the suspect versions
+
+Build 5.2.16 (master):
+	Christian: Throw the sorting exception
+
+Build 5.2.15 (master):
+	Christian: More tweaks to the mod sorting code
+	Christian: Add in a pretty sorting error screen
+
+Build 5.2.13 (master):
+	Christian: Try and clean up cycle detection output a bit
+
+Build 5.2.12 (master):
+	Christian: Fix server side derp with Forge network packet handler
+
+Build 5.2.11 (master):
+	Christian: Separate network mod config from setup. Allows for Forge Packet Handler nicety
+
+Build 5.2.10 (master):
+	florian: Alternative @SidedProxy setter for Scala.
+	florian:
+		Some more Scala @SidedProxy adjustments. Now properly supporting pure singletons, i.e.
+		object C {
+		  @SidedProxy(...)
+		  var proxy: P = null
+		}
+		Removed fallback, as all such singletons are properly handled by the new code now, and class implementations fall back to the code also used for plain Java mods.
+	florian: Merge declaration and initialization of a variable.
+
+Build 5.2.6 (master):
+	LexManos: Don't spit error on LWJGL not supporting 4.3 just warning.
+
+Build 5.2.5 (master):
+	LexManos:
+		Add version detection to astyle and print error if it doesnt detect version 2.0+
+		Also fixed astyle's config for max-instatement-indent that sometimes caused crashes with certian versions of astyle.
+
+Build 5.2.4 (master):
+	CovertJaguar: Improved Entity Spawn Error
+
+Build 5.2.2 (master):
+	LexManos: Fix scalac detection to actually use the located command instead of defaulting to 'scalac'
+
+Build 5.2.1 (master):
+	LexManos: Update MCP's md5 for the fixed srg files.
+
+Build 5.2.0 (master):
+	Christian: Update for minecraft 1.5.2
+
+Build 5.1.43 (master):
+	Christian: Don't leave scala running in interactive mode.
+
+Build 5.1.42 (master):
+	Christian: Some fixups for scala compilation in MCP. Scala should now be compilable and reobfuscatable with srgnames in MCP.
+	Christian: Fix when an old scalac is present on the system to not fail the build
+	LexManos: Fix patch derp.
+
+Build 5.1.39 (master):
+	Christian: Fix URL for MCP
+
+Build 5.1.38 (master):
+	Christian: Attempt to reduce lines on the screen for id mismatch. Hopefully prevents game crashes.
+	Christian: Fix possible NPEs in GameData
+
+Build 5.1.36 (master):
+	msciesinski:
+		Fixing the GameRegistry. Now it is possible to register a Block with a BlockItem using following code:
+		MyBlock myBlock = new MyBlock();
+		GameRegistry.registerBlock(myBlock, MyBlockItem.class, "myBlock");
+		where MyBlockItem class has one constructor with signature:
+		public MyBlockItem(int id, Block block)
+
+Build 5.1.34 (master):
+	Christian: Add a to string to fmlmodcontainer: should mean less derpy cyclic dependency data
+
+Build 5.1.33 (master):
+	thoughtsofblought:
+		Update FMLDeobfuscatingRemapper.java
+		
+		Fixes a "Type mismath:cannot convert from element type Object to FieldNode" error at line 176.
+
+Build 5.1.31 (master):
+	Christian: Fix scala supporting SidedProxy. It should work now.
+
+Build 5.1.30 (master):
+	Christian: Fix a small modloader compatibility derp: closes #222
+
+Build 5.1.29 (master):
+	Christian: Fix possible NPE in findItemStack, closes #218
+
+Build 5.1.28 (master):
+	Christian: Fix to output versions in crash logs
+	Christian: Use more expressive language when a version specifier is a simple unbounded above condition
+
+Build 5.1.26 (master):
+	agaricusb: Add srgname to registerTileEntityWithAlternatives
+
+Build 5.1.24 (master):
+	agaricusb: Add type info to properly deobfuscate overloaded fields. Fixes #210.
+	Christian: Add in some caching of the read field descriptions for efficiency
+
+Build 5.1.21 (master):
+	Christian: MCP names update
+
+Build 5.1.20 (master):
+	LexManos: Re-worked the Texture patches, optifine helper function, and re-added support for dynamically rotating the texture for mod authors who do things horribly wrong.
+
+Build 5.1.19 (master):
+	Christian:
+		Very significant improvement in performance by using glSubImage to upload data. Inspired by frequent complaints about performance of hires
+		texture packs. They probably still need a beefy system but should work. Hopefully I can figure out why the subImage GL side copy isn't working
+		properly for an even more significant speed boost. But this gets things started.
+	Christian: And add the patches *sigh*
+	Christian: Fix compilation derp, and clean up rotation helper.
+
+Build 5.1.16 (master):
+	LexManos: Fixed issue with instalation when java/javac commands had quotes.
+
+Build 5.1.15 (master):
+	LexManos: Sanitize input to isRemappedClass to use '/' as a package seperator like the srg files.
+
+Build 5.1.14 (master):
+	LexManos: Added the ability to save transformed classes to disc for debugging.
+
+Build 5.1.13 (master):
+	Christian: Fix NPE when branding isn't present
+
+Build 5.1.12 (master):
+	Christian: Change snooper/crash report brand handling. fmlbranding now loads another string!
+	Christian: And the core patches for that
+
+Build 5.1.10 (master):
+	Christian: Attempt to make any "default package" class public. This might fix problems with certain modloader mods that ship changes to vanilla classes.
+	Christian: Fix up derp in access transformer
+
+Build 5.1.8 (master):
+	Christian: Itemstacks in the GameRegistry (manual registration by mods)
+	Christian: Clone the itemstack, and allow for passing in a stacksize
+	Christian: Validate supplied stack size
+	Christian: Add a mechanism to dump the registry- useful for mod developers.
+	Christian: Add some information, and a log message letting you know it worked
+
+Build 5.1.3 (master):
+	Christian:
+		Fix mismatch screen a bit. Should render more correctly now and
+		at least not be blank in a lot of circumstances..
+
+Build 5.1.2 (master):
+	jamesrtclarke:
+		Fixed FMLRelaunchLog's Newline Handling
+		
+		System.out.println("\n") causes currentMessage to start with a newline character, which means idx will always be 0 from then on. Therefore if idx is 0 messages must still be logged, otherwise no more messages sent to stdout will be logged and they will just accumulate in currentMessage.
+
+Build 5.1.0 (master):
+	merdiwendiyo: Fix missing block world rendering
+	Christian: Fix up patch properly. Also, fix md5s for the jars.
+
+Build 5.0.38 (master):
+	LexManos: Updated to latest MCP and Minecraft 1.5.1 Pre-release.
+	LexManos: Someone derped up this function bad, revert name.
+	LexManos: Updated for new PR client jar.
+
+Build 5.0.34 (master):
+	LexManos: Fix NPE with CoreMods who do not have the new MCVersion annotation.
+	agaricusb: Fix install.py --mcp-dir option. Fixes #204.
+
+Build 5.0.35 (1.5.1):
+	LexManos: Updated for new PR client jar.
+
+Build 5.0.31 (master):
+	Christian: Fix the logger to treat newlines better, hopefully. Closes #199
+	Christian: Use the relaunch log, for class circularity safety.
+	Christian:
+		Support simple mc version test in coremods, only effective through
+		jar loading.
+		Also, log some more data about the environment.
+
+Build 5.0.28 (master):
+	LexManos: Fix potential NPE in class loading and add extra debug information.
+
+Build 5.0.27 (master):
+	bspkrs: Added comments to note FML-only methods
+
+Build 5.0.25 (master):
+	Christian:
+		Fix AllPublic access transformer not affecting methods. Should fix modloader
+		compatibility
+
+Build 5.0.24 (master):
+	LexManos: Allocate more ram {typically 256 is defailt} to fermflower, should fix decomplication issues on OSX
+	LexManos: OS X's python 2.6.1 has a bug in zipfile.extractall that makes it unzip directories as regular files. So switch to extract
+
+Build 5.0.22 (master):
+	Christian:
+		Fix up stupid derp in IMC code: actually reset the IMC list after
+		each delivery. Fixes a bunch of mods. Sorry everyone.
+
+Build 5.0.21 (master):
+	Christian: Fix up deep tree deobfuscation
+	Christian: Pass obfuscation status to coremods
+
+Build 5.0.19 (master):
+	LexManos: Update MCP for latest PR silent update.
+	LexManos: Missed joined.exc, must fix scripts.
+
+Build 5.0.17 (master):
+	LexManos: Readjust size of mods button when Minecraft Realms button is enabled.
+
+Build 5.0.16 (master):
+	Christian: Update MCP, fixes the "broken texture packs" problem.
+
+Build 5.0.15 (master):
+	Uristqwerty:
+		Simplify logic in tick start/end
+		
+		Change the EnumSet equivalent of "A &= ~ new(~B)" to "A &= B".
+		This eliminates the need for one temporary object in a frequently called loop, and reduces the number of methods that need to be invoked.
+	Christian: Fix coremods without a manifest crashing the game. Closes #181
+	Christian: Fix demo mode crash. Closes #187
+	Christian: Fix supertype parsing to handle null superclass (Hi Object!). Closes #160
+	Christian: Change type of connection queue to a concurrent linked queue. Much more efficient, hopefully. Closes #189
+	Christian: Fix "0 mods" display when installed in forge.
+
+Build 5.0.8 (master):
+	Christian: Fix reflection helper: it needs to unmap the classname to find the field maps.
+
+Build 5.0.7 (master):
+	Christian: Use the reobfuscation maps in the reflection helper for field lookups: should help some reflection cases with the deobf.
+	Christian:
+		Revert "Use the reobfuscation maps in the reflection helper for field lookups: should help some reflection cases with the deobf."
+		
+		This reverts commit 485db6be2e6b54a9a523a2b06e0d886792b0826a.
+	Christian: Try a different way of remapping the fields. Should work because it's userspace, not relauncher space
+
+Build 5.0.4 (master):
+	Christian: Fix up some relauncher stuff: the vanilla applet works now, as do other applets. Deobf data is resolveable for them too.
+
+Build 5.0.3 (master):
+	LexManos: Fixed srg name of minecraftDir for runtime deobf.
+
+Build 5.0.2 (master):
+	Christian: Fix runtime deobfuscation for remapped inner classes
+
+Build 5.0.1 (master):
+	LexManos: Fix Multi-part entity children ID issue, mobs with custom spawning must deal with child ids themselves.
+
+Build 5.0.0 (master):
+	LexManos: FML will now rename local variables to have JAD-style names instead of FernFlower var## names. New script to do this, to allow for modders to run it over there own code: python rename_vars.py -mcp [folders to rename]...
+	LexManos: Updated patches for new JAD style names.
+	Christian: Initial setup for snapshot- the client compiles, but patches fail to apply.
+	Christian: Initial patch update for snapshot
+	Christian: Delete old patches not needed anymore
+	Christian: A couple of packaging tweaks, clean up more junk. It may come back but for now it's gone
+	Christian: Fix modlist to use the new texture binding functions, i think
+	Christian: Another packaging update. I think we're done now.
+	Christian: Temporary hosting
+	Christian: Fix mcp conf md5 signatures for the snapshot
+	Christian: Update for MCP7.30c - fixes redstone rendering issues
+	Christian: First draft runtime deobf
+	Christian: Working to read class names and remap them at runtime.
+	Christian: Method deobfuscation now works
+	Christian:
+		Now actually works for mods, somewhat. It currently generates access violations for
+		ModLoader mods that presume access to fields that are not actually accessible from
+		a different package.
+	Christian: Read the joined.srg file directly from lib/deobfuscation_data.zip now. Still debating distribution method.
+	Christian:
+		Final part of the deobfuscation data setup- fields are now deobfuscated as well.
+		All that remains, is to figure out what and how to distribute the deobfuscation data itself.
+	Christian: MCP compilation works
+	Christian: Update for MCP 7.34 and MC 13w05b
+	Christian:
+		Fix some class naming and packaging issues, pending an MCP update
+		for the same
+	Christian: Fix Language Registry, closes #163
+	Christian: Fix renderengine patch *sigh*
+	Christian: Update libs for 1.5. Lots of new libs.
+	Christian: Clean up more junk
+	Christian:
+		Change readFully to actually read a bunch of bytes at once now. Thanks to nallar and aartbluestoke for the suggestion to
+		revisit this..
+	Christian: Tweak IASM hook api. You can return multiple classes now.
+	LexManos: Fix bug in rename_vars where certian items would fail to be renamed.
+	LexManos: Fix crash in GuiModList for mod logo files, logo is not rendering for unknow reason.
+	LexManos: Update distribuited eclipse's classpath for updated libraries.
+	Christian: Tweaks to runtime deobf
+	Christian: Update FML to 1.5 snapshot 13w09c
+	LexManos: Readd ignore for argo and bouncycastle, needed for our replacement to work properly.
+	LexManos: Delete unneeded patch
+	LexManos: Actually remove classes from the csv when removed, and moved All EntityMinecart entities to net.minecraft.entity.item
+	LexManos: Fix exc for renamed Behavior classes.
+	Christian: Add in build for deobf data zip file, update for official mcp 7.39
+	Christian: Build, and use, MC versioned deobfuscation data
+	Christian: Fix up runtime deobfuscation. Working well now.
+	Christian: Update MCP URL for snapshot
+	Christian: Don't enforce signatures on minecraft classes
+	Christian: Force the joined.srg timestamp to zero- avoids annoying sha1 differences
+	Christian: Ignore deobf data
+	LexManos: Ignore this commit.
+	LexManos: Ignore again, testing submodule.
+	LexManos: Force file name encoding to UTF-8, caused different zips on different systems.
+	Christian: Capture Minecraft logs into FML logging
+	Christian: Update next render to 40
+	Christian:
+		FIX massive performance issue with FML. Thanks to @sfPlayer1 for finding
+		this epic derp on my part!
+	Christian: Refresh the renderengine after modloading is complete. Should fix issues with out-of-place texture registration by mods.
+	Christian: Refresh copyright notices on everything
+	Christian: Strip deprecated code
+	Christian: Fix up state transition derp when the server crashes with an error- it shouldn't double-derp
+	Christian: Tweak license text- any osi licensed project can use the asm transformer code
+	Christian:
+		Scala support!
+		It's still primitive, I hope that people will like it. I do :)
+	Christian: Global object registry, also, support the new itemblockwithmetadata constructor
+	Christian: Update to MCP 1.5 and minecraft 1.5.
+	LexManos: Update for new MCP with srg reobf.
+	Christian: Support the MCP format of partial reobfuscation for portability. Ensure modloader-like compatibility
+	Christian: Update MCP info for latest
+	rainwarrior: Fixes GameRegistry.registerBlock
+	Christian:
+		Revert "Fix modlist to use the new texture binding functions, i think"
+		
+		This reverts commit 48544db690bf213a322954b7bd39cb3a8ca59bb1.
+		
+		Conflicts:
+			client/cpw/mods/fml/client/GuiModList.java
+	Christian: Some fixes for the snapshot
+	Christian: Fix accidental commands.patch overwrite
+	Christian: Fix up some small things, merging into mainline
+
+Build 4.99.89 (snapshot15):
+	Christian:
+		Revert "Fix modlist to use the new texture binding functions, i think"
+		
+		This reverts commit 48544db690bf213a322954b7bd39cb3a8ca59bb1.
+		
+		Conflicts:
+			client/cpw/mods/fml/client/GuiModList.java
+	Christian: Some fixes for the snapshot
+	Christian: Fix accidental commands.patch overwrite
+
+Build 4.99.86 (snapshot15):
+	Christian: Ignore deobf data
+	LexManos: Ignore this commit.
+	LexManos: Ignore again, testing submodule.
+	LexManos: Force file name encoding to UTF-8, caused different zips on different systems.
+	Christian: Capture Minecraft logs into FML logging
+	Christian: Update next render to 40
+	Christian:
+		FIX massive performance issue with FML. Thanks to @sfPlayer1 for finding
+		this epic derp on my part!
+	Christian: Refresh the renderengine after modloading is complete. Should fix issues with out-of-place texture registration by mods.
+	Christian: Refresh copyright notices on everything
+	Christian: Strip deprecated code
+	Christian: Fix up state transition derp when the server crashes with an error- it shouldn't double-derp
+	Christian: Tweak license text- any osi licensed project can use the asm transformer code
+	Christian:
+		Scala support!
+		It's still primitive, I hope that people will like it. I do :)
+	Christian: Global object registry, also, support the new itemblockwithmetadata constructor
+	Christian: Update to MCP 1.5 and minecraft 1.5.
+	LexManos: Update for new MCP with srg reobf.
+	Christian: Support the MCP format of partial reobfuscation for portability. Ensure modloader-like compatibility
+	Christian: Update MCP info for latest
+	rainwarrior: Fixes GameRegistry.registerBlock
+
+Build 4.99.66 (snapshot15):
+	Christian: Force the joined.srg timestamp to zero- avoids annoying sha1 differences
+
+Build 4.99.65 (snapshot15):
+	Christian: Don't enforce signatures on minecraft classes
+
+Build 4.99.64 (snapshot15):
+	Christian: Tweaks to runtime deobf
+	Christian: Add in build for deobf data zip file, update for official mcp 7.39
+	Christian: Build, and use, MC versioned deobfuscation data
+	Christian: Fix up runtime deobfuscation. Working well now.
+	Christian: Update MCP URL for snapshot
+
+Build 4.99.58 (snapshot15):
+	LexManos: Fix exc for renamed Behavior classes.
+
+Build 4.99.57 (snapshot15):
+	LexManos: Readd ignore for argo and bouncycastle, needed for our replacement to work properly.
+	LexManos: Delete unneeded patch
+	LexManos: Actually remove classes from the csv when removed, and moved All EntityMinecart entities to net.minecraft.entity.item
+
+Build 4.99.54 (snapshot15):
+	Christian: Update FML to 1.5 snapshot 13w09c
+
+Build 4.99.53 (snapshot15):
+	LexManos: Update distribuited eclipse's classpath for updated libraries.
+
+Build 4.99.52 (snapshot15):
+	LexManos: Fix bug in rename_vars where certian items would fail to be renamed.
+	LexManos: Fix crash in GuiModList for mod logo files, logo is not rendering for unknow reason.
+
+Build 4.7.39 (master):
+	LexManos: Just enable server side compile, and warn not to cmplain to us.
+
+Build 4.7.38 (master):
+	LexManos: Fixup reobfusication of server code if present.
+
+Build 4.99.50 (snapshot15):
+	Christian: First draft runtime deobf
+	Christian: Working to read class names and remap them at runtime.
+	Christian: Method deobfuscation now works
+	Christian:
+		Now actually works for mods, somewhat. It currently generates access violations for
+		ModLoader mods that presume access to fields that are not actually accessible from
+		a different package.
+	Christian: Read the joined.srg file directly from lib/deobfuscation_data.zip now. Still debating distribution method.
+	Christian:
+		Final part of the deobfuscation data setup- fields are now deobfuscated as well.
+		All that remains, is to figure out what and how to distribute the deobfuscation data itself.
+	Christian: Fix Language Registry, closes #163
+	Christian: Tweak IASM hook api. You can return multiple classes now.
+
+Build 4.7.43 (runtimedeobf):
+	Christian:
+		A log of logging cleanup. FML will now read logging.properties to configure logging channels a couple of times during startup.
+		You should be able to filter a lot of messages based on things like modid and certain FML related features that can be noisy
+		like item tracking.
+		Should close #175
+	Christian: More logging tweaks. You can probably configure individual mod log files if you wish now
+	Christian:
+		IMC tweaks: runtimeMessages now work (thanks for all that testing for this much requested feature!)
+		and IMCEvent will no longer remove messages if no one gets them, so you can do
+		just manual runtime polling, if you wish.
+	Christian: Fix up mistake that broke all modloading. Nice.
+	Christian:
+		Fix HD mob skins, FINALLY!!!
+		Stupid eyes are stupid.
+	LexManos: Option to disable renaming for srgnames.
+	Christian: Fix Language Registry, closes #163
+	Christian: Fix Language Registry, closes #163
+
+Build 4.99.39 (snapshot15):
+	Christian: Clean up more junk
+	Christian:
+		Change readFully to actually read a bunch of bytes at once now. Thanks to nallar and aartbluestoke for the suggestion to
+		revisit this..
+
+Build 4.99.37 (snapshot15):
+	Christian: Update libs for 1.5. Lots of new libs.
+
+Build 4.99.36 (snapshot15):
+	Christian: Fix renderengine patch *sigh*
+
+Build 4.99.35 (snapshot15):
+	LexManos: Add parameters to FML install to enable/disable certian aspects. Applying patches, running transformer/merger, and decompiling server.
+	Christian: Tweak a method signature
+	Christian: Deprecate the old GUI ticktype. They're dead and have been for some time.
+	Christian: Try and handle "death on startup" a bit cleaner
+	Christian:
+		A log of logging cleanup. FML will now read logging.properties to configure logging channels a couple of times during startup.
+		You should be able to filter a lot of messages based on things like modid and certain FML related features that can be noisy
+		like item tracking.
+		Should close #175
+	Christian: More logging tweaks. You can probably configure individual mod log files if you wish now
+	Christian:
+		IMC tweaks: runtimeMessages now work (thanks for all that testing for this much requested feature!)
+		and IMCEvent will no longer remove messages if no one gets them, so you can do
+		just manual runtime polling, if you wish.
+	Christian: Fix up mistake that broke all modloading. Nice.
+	Christian:
+		Fix HD mob skins, FINALLY!!!
+		Stupid eyes are stupid.
+	LexManos: Option to disable renaming for srgnames.
+	Christian: Fix Language Registry, closes #163
+	LexManos: Fix sprite map issue.
+	immibis: Console log thread should be a daemon thread.
+
+Build 4.7.37 (master):
+	immibis: Console log thread should be a daemon thread.
+
+Build 4.7.35 (master):
+	LexManos: Fix sprite map issue.
+
+Build 4.7.34 (master):
+	Christian: Fix Language Registry, closes #163
+
+Build 4.7.33 (master):
+	LexManos: Option to disable renaming for srgnames.
+
+Build 4.7.32 (master):
+	Christian:
+		Fix HD mob skins, FINALLY!!!
+		Stupid eyes are stupid.
+
+Build 4.7.31 (master):
+	Christian: Fix up mistake that broke all modloading. Nice.
+
+Build 4.99.19 (snapshot15):
+	Christian:
+		Fix some class naming and packaging issues, pending an MCP update
+		for the same
+
+Build 4.99.18 (snapshot15):
+	Christian: MCP compilation works
+	Christian: Update for MCP 7.34 and MC 13w05b
+
+Build 4.7.30 (master):
+	Christian:
+		IMC tweaks: runtimeMessages now work (thanks for all that testing for this much requested feature!)
+		and IMCEvent will no longer remove messages if no one gets them, so you can do
+		just manual runtime polling, if you wish.
+
+Build 4.7.29 (master):
+	Christian: More logging tweaks. You can probably configure individual mod log files if you wish now
+
+Build 4.7.28 (master):
+	Christian: Try and handle "death on startup" a bit cleaner
+	Christian:
+		A log of logging cleanup. FML will now read logging.properties to configure logging channels a couple of times during startup.
+		You should be able to filter a lot of messages based on things like modid and certain FML related features that can be noisy
+		like item tracking.
+		Should close #175
+
+Build 4.7.33 (runtimedeobf):
+	Christian: Read the joined.srg file directly from lib/deobfuscation_data.zip now. Still debating distribution method.
+	Christian:
+		Final part of the deobfuscation data setup- fields are now deobfuscated as well.
+		All that remains, is to figure out what and how to distribute the deobfuscation data itself.
+
+Build 4.7.31 (runtimedeobf):
+	Christian:
+		Now actually works for mods, somewhat. It currently generates access violations for
+		ModLoader mods that presume access to fields that are not actually accessible from
+		a different package.
+
+Build 4.7.26 (master):
+	Christian: Tweak a method signature
+	Christian: Deprecate the old GUI ticktype. They're dead and have been for some time.
+
+Build 4.7.24 (master):
+	Christian: Fix up packages.csv ordering for easier diffing
+	LexManos: Add parameters to FML install to enable/disable certian aspects. Applying patches, running transformer/merger, and decompiling server.
+
+Build 4.99.16 (snapshot15):
+	donington:
+		FMLLogFormatter: dynamic log level name
+		
+		FMLLogFormatter now uses getLocalizedName or getName for log level name
+		
+		Changes to be committed:
+			modified:   common/cpw/mods/fml/relauncher/FMLLogFormatter.java
+	Christian:
+		Update license text to make clear that FML is not a way to sidestep
+		MCP licensing.
+	bspkrs: Fix logical error in comment text
+	Christian: Update address of the FML repository to the new location in all the files
+	Christian: Update MCP to MCP7.26a and refresh MCP names
+	Christian: Fix breaking change
+	Christian: Javadoc cleanup
+	Christian:
+		The "ServerStarting" event should now properly crash the server if it fails,
+		so the client will properly exit. Also, added in a "pre-server-start" event
+		that fires before the worlds are loaded for a save, just for you immibis.
+	Christian: Remember to add the new patches!
+	Christian:
+		Add in a registry method to allow for alternative TileEntity names- they will be used to support
+		loading maps containing the older definitions.
+	Christian: Fix up packages.csv ordering for easier diffing
+
+Build 4.99.2 (snapshot15):
+	Christian: Update for MCP7.30c - fixes redstone rendering issues
+
+Build 4.7.22 (master):
+	Christian:
+		Add in a registry method to allow for alternative TileEntity names- they will be used to support
+		loading maps containing the older definitions.
+
+Build 4.7.21 (master):
+	Christian: Remember to add the new patches!
+
+Build 4.7.20 (master):
+	Christian:
+		The "ServerStarting" event should now properly crash the server if it fails,
+		so the client will properly exit. Also, added in a "pre-server-start" event
+		that fires before the worlds are loaded for a save, just for you immibis.
+
+Build 4.7.19 (master):
+	Christian: Javadoc cleanup
+
+Build 4.7.18 (master):
+	Christian: Fix breaking change
+
+Build 4.7.17 (master):
+	donington:
+		FMLLogFormatter: dynamic log level name
+		
+		FMLLogFormatter now uses getLocalizedName or getName for log level name
+		
+		Changes to be committed:
+			modified:   common/cpw/mods/fml/relauncher/FMLLogFormatter.java
+	bspkrs: Fix logical error in comment text
+
+Build 4.7.11 (master):
+	Christian:
+		Update license text to make clear that FML is not a way to sidestep
+		MCP licensing.
+
+Build 4.99.1 (snapshot15):
+	Christian: Fix mcp conf md5 signatures for the snapshot
+
+Build 4.99.0 (snapshot15):
+	Christian: Initial setup for snapshot- the client compiles, but patches fail to apply.
+	Christian: Initial patch update for snapshot
+	Christian: Delete old patches not needed anymore
+	Christian: A couple of packaging tweaks, clean up more junk. It may come back but for now it's gone
+	Christian: Fix modlist to use the new texture binding functions, i think
+	Christian: Another packaging update. I think we're done now.
+	Christian: Temporary hosting
+
+Build 4.7.10 (master):
+	Christian: Fix incorrect end length calculation. Closes #161 Thanks BStramke!
+
+Build 4.7.9 (master):
+	Christian:
+		Fix LanguageRegistry loading files in UTF-8 format. loadLocalization should work for non-xml in
+		all languages now (assumes UTF-8)
+
+Build 4.7.8 (master):
+	CovertJaguar: Added an accessor for villagers
+
+Build 4.7.6 (master):
+	LexManos: New python script for signing partial jar files. See comments inside for details.
+	LexManos: New python script to update java files for new package names. Usage: paython update_packages.py --mcp-dir <mcp folder> [Folders To Repackage]
+
+Build 4.7.4 (master):
+	Christian: Move server stopped *after* the server has actually stopped. *sigh*
+
+Build 4.7.3 (master):
+	Christian: Add in a "server stopped" event
+
+Build 4.7.2 (master):
+	Christian:
+		Add in some classloader debugging information: use fml.debugClassLoading=true as a system property
+		to track down problems with classes not being found or loading erratically.
+
+Build 4.7.1 (master):
+	Christian: Revert MCP name change for canConnectRedstone - it conflicts with a forge method of the same name and breaks 1.4.6 to 1.4.7 compatibility
+
+Build 4.7.0 (master):
+	Christian: Update for MC 1.4.7
+
+Build 4.6.17 (master):
+	Christian: Log if there's a problem reading the class bytes
+	Christian:
+		Fix multiple GUI containers for ML containers. Sorry ultimatechest that
+		this fix took so long, a bug report at github.com/cpw/FML would help,
+		next time ;)
+
+Build 4.6.15 (master):
+	LexManos: Fix NPE in fingerprint loading, and pass expectged fingerprint to FMLFingerprintViolationEvent
+
+Build 4.6.14 (master):
+	Christian: Fix a message delivery issue in IMC
+
+Build 4.6.13 (master):
+	Christian: Some tweaks for signing and ID matching
+
+Build 4.6.12 (master):
+	LexManos: Output obfed files with reserved windows names to _NAME.class
+	LexManos: MCP will reobf classes with reserved names in windows to a legal file name. And FML will try to read these classes over the default ones.
+	LexManos: Fixed placement of onConnectionClosed callback.
+	LexManos: Remove unneeded file
+
+Build 4.6.8 (master):
+	LexManos: Add quotes around javac command.
+
+Build 4.6.7 (master):
+	Christian:
+		Update MCP to newer version
+		Fix fingerprint fire
+
+Build 4.6.6 (master):
+	Christian:
+		InterModComms now supports a runtime polling based model for inter-mod comms at
+		runtime.
+		Deprecate method that shouldn't be used. COPY it's content to your mod. Don't CALL it.
+
+Build 4.6.5 (master):
+	Christian: Don't be as alarming about item overwrites.
+
+Build 4.6.4 (master):
+	Christian:
+		Added configuration file which allows modids to ignore ID validation checking. IT WILL CRASH YOUR GAME in 99.999% of cases.
+		Immibis is a whingy ass. And TinyTimRob too. Now STFU and GTFO. closes #510 for ever.
+
+Build 4.6.3 (master):
+	LexManos: Dixed ev eclipse worksapce, now references BC.
+
+Build 4.6.2 (master):
+	LexManos: Removed hardcoded additions
+	LexManos: Added client src folder to classpath for startclient/startserver.
+
+Build 4.6.0 (master):
+	Christian: Remove old NEI/CCC compatibility code and other classloading tweaks
+	Christian: More stuff for the thingy
+	Christian: Fix newline fun
+	Christian: Move Side and SideOnly to relauncher package
+	Christian: More fixes
+	Christian: More work
+	Christian: more 1.4.6 tweaks
+	Christian: Fix build script
+	Christian: Update to MC 1.4.6
+
+Build 4.5.65 (master):
+	Christian: Fix up handling null names. *sigh*
+
+Build 4.5.64 (master):
+	Christian:
+		Some tweaks to item identification. The GameRegistry methods are deprecated
+		to encourage you to use the new named ones instead. These will force a
+		name on the item/block, allowing for stronger matching than "sequential guessing"
+
+Build 4.5.63 (master):
+	LexManos: Updated MCP download mirriors upon Searge's request.
+
+Build 4.5.63 (master):
+	Christian: Remove old NEI/CCC compatibility code and other classloading tweaks
+
+Build 4.5.62 (master):
+	LexManos: Fix var name messup
+
+Build 4.5.61 (master):
+	LexManos: Update released eclipse project to link BouncyCastle
+
+Build 4.5.60 (master):
+	Christian: Fix possible escape leakage..
+	Christian:
+		Change ID management slightly. IDs are tracked by block type for itemblock items now. This means servers will need to update.
+		Also, ordinal rearrangements within a mod will no longer trigger server disconnection, though a warning will still be logged.
+
+Build 4.5.58 (master):
+	LexManos: More robust eclipse workspace replacement
+
+Build 4.5.57 (master):
+	LexManos: Inital script side commit for MC source repackaging done.
+	LexManos: Update FML imports
+	LexManos: First half of new patches
+	LexManos: Move IBossDisplayData to shared
+	LexManos: Remove common folder from projects
+	LexManos: More re-packaging, got most classes out of the default package.
+	LexManos: Finished repackaging net.minecraft.* net.minecraft.client is left
+	LexManos: Delete duplicate file
+	LexManos: Fix build eclipse extractor task
+	LexManos: Add a modid on the mods list, should make it easier to do things like forge chunkloading config
+	LexManos:
+		Add in storage, detection and validation of the ItemID array between client and server
+		and also for world saves. May help with item configuration issues.
+	LexManos: Remerged branch, and updated dev eclipse workspace.
+	LexManos: Fixed 0.tree to actually refresh the workspace.
+	LexManos: Give new classes a distinct package to be moved from.
+	LexManos: Updated patches to new packages.
+	LexManos: Some stragler patches
+	LexManos: Update all imports for repackaging. Branch is compileable.
+	LexManos: Update fml_marker.cfg, Minecraft is now runnable!
+	LexManos: Updated the update_packages script to support different mcp locations
+	LexManos: Fished moving out the rest of the default packaged classes to aproperiate packages. Updated patches and code to reflect.
+	LexManos: Updated build script to not use the mcp common directory as it doesn't exist anymore.
+	LexManos:
+		Removed remaining references to src/common
+		Fixed eclipse workspace replacemnt on source dist
+		Cleanup some outputs
+	LexManos: Some derp protection in the workspace copy.
+	Christian: Fix up idmap code
+	LexManos: Fixing id map generation - should validate correctly now
+	LexManos: Remade python dist as 32-bit.
+	LexManos: Fix patches, rebased with HEAD
+	Christian: Remove extraneous patch file
+	Christian:
+		Change to download bouncy castle as well. We also finally properly use the downloaded libs
+		even in vanilla code!
+	LexManos: Kill decompile if astyle is not found and set execution bits on mcp .sh files and astyle-osx
+
+Build 4.5.23 (master):
+	LexManos: Fixing id map generation - should validate correctly now
+	LexManos: Remade python dist as 32-bit.
+	LexManos: Fix patches, rebased with HEAD
+	pahimar:
+		Update common/cpw/mods/fml/common/registry/LanguageRegistry.java
+		
+		Add in logging of what file failed to be loaded
+
+Build 4.5.39 (repackage):
+	LexManos:
+		Removed remaining references to src/common
+		Fixed eclipse workspace replacemnt on source dist
+		Cleanup some outputs
+	LexManos: Some derp protection in the workspace copy.
+
+Build 4.5.37 (repackage):
+	LexManos: Fix build eclipse extractor task
+	LexManos: Add a modid on the mods list, should make it easier to do things like forge chunkloading config
+	LexManos:
+		Add in storage, detection and validation of the ItemID array between client and server
+		and also for world saves. May help with item configuration issues.
+	LexManos: Remerged branch, and updated dev eclipse workspace.
+	LexManos: Fixed 0.tree to actually refresh the workspace.
+	LexManos: Give new classes a distinct package to be moved from.
+	LexManos: Updated patches to new packages.
+	LexManos: Some stragler patches
+	LexManos: Update all imports for repackaging. Branch is compileable.
+	LexManos: Update fml_marker.cfg, Minecraft is now runnable!
+	LexManos: Updated the update_packages script to support different mcp locations
+	LexManos: Fished moving out the rest of the default packaged classes to aproperiate packages. Updated patches and code to reflect.
+	LexManos: Updated build script to not use the mcp common directory as it doesn't exist anymore.
+
+Build 4.5.18 (master):
+	Christian:
+		Add in storage, detection and validation of the ItemID array between client and server
+		and also for world saves. May help with item configuration issues.
+
+Build 4.5.17 (master):
+	Christian: Fix build eclipse extractor task
+	Christian: Add a modid on the mods list, should make it easier to do things like forge chunkloading config
+
+Build 4.5.15 (master):
+	LexManos: Assume Forge is the parent directory when checking for AT configs.
+	Christian:
+		Remove old eclipse workspace and ship/extract as a zip file (use ant setupenvironment)
+		Fix up install.py for forge multibranch changes
+	Christian: Try defaulting branch differently
+	Christian: Try and make branch non-derpy
+	Christian: Fix typo
+
+Build 4.5.14 (master):
+	Christian: Try and make branch non-derpy
+
+Build 4.5.13 (HEAD):
+	Christian: Try defaulting branch differently
+
+Build 4.5.12 (HEAD):
+	Christian:
+		Remove old eclipse workspace and ship/extract as a zip file (use ant setupenvironment)
+		Fix up install.py for forge multibranch changes
+
+Build 4.5.11 (HEAD):
+	LexManos: Assume Forge is the parent directory when checking for AT configs.
+
+Build 465:
+	Christian: Clean up build.xml script- support outputting a branched jar file
+	Christian: Try and get a valid branch name on jenkins
+	Christian: Last part of branch name only please
+	Christian: Name both zips the same format
+
+Build 464:
+	Christian: Last part of branch name only please
+
+Build 463:
+	Christian: Try and get a valid branch name on jenkins
+

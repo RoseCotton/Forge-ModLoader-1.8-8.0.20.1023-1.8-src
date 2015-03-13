@@ -1,0 +1,20 @@
+package com.rosecotton.shelvesmod;
+
+import org.lwjgl.opengl.GL11;
+import net.minecraft.block.Block;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.StatCollector;
+
+public class ShelfRenderer extends TileEntitySpecialRenderer{
+	private ModelShelf shelf = new ModelShelf();
+	
+	@Override
+	public void renderTileEntityAt(TileEntity tileentity, double d0, double d1, double d2, float f, int i) {
+		shelf.render(tileentity, d0, d1, d2);
+		
+	}
+}
